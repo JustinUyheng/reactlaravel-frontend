@@ -231,6 +231,7 @@ const User = () => {
 			alert("Profile refreshed successfully!");
 		} catch (error) {
 			alert("Failed to refresh profile. Please try again.");
+			console.error("Refresh failed:", error);
 		}
 	};
 	// --- END Handlers ---

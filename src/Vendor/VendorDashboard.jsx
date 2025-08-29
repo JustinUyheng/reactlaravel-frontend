@@ -5,16 +5,11 @@ import { API_CONFIG, getAuthHeaders } from "../config/api";
 import "./VendorStyle/VendorDashboard.css";
 
 const VendorDashboard = () => {
-	const {
-		user,
-		isAuthenticated,
-		loading: authLoading,
-		refreshProfile,
-	} = useAuth();
+	const { user, isAuthenticated, loading: authLoading } = useAuth();
 	const navigate = useNavigate();
 
 	const [store, setStore] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [_, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
 	const fetchVendorStore = async () => {
@@ -57,10 +52,10 @@ const VendorDashboard = () => {
 		});
 	}, [isAuthenticated, user, authLoading, navigate]);
 
-	const handleStoreCreated = async () => {
-		await fetchVendorStore();
-		await refreshProfile();
-	};
+	// const handleStoreCreated = async () => {
+	// 	await fetchVendorStore();
+	// 	await refreshProfile();
+	// };
 
 	if (!isAuthenticated || user?.role_id !== 2) {
 		return <div>Access denied. Vendor access required.</div>;

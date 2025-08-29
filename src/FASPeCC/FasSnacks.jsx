@@ -32,7 +32,7 @@ const FasSnacks = () => {
 	const [activeTab, setActiveTab] = useState("Meals");
 	const navigate = useNavigate();
 	const dataToShow = activeTab === "Meals" ? mealsData : drinksData;
-	const { addToCart, cart } = useCart();
+	const { addToCart } = useCart();
 
 	const handleAdd = (item, type) => {
 		addToCart(item, type);

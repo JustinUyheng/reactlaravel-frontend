@@ -42,7 +42,7 @@ const CreateStore = () => {
 		setError("");
 
 		try {
-			const response = await createStore(formData);
+			await createStore(formData);
 			alert("Store created successfully!");
 			navigate("/vendor/dashboard"); // Navigate to vendor dashboard
 		} catch (error) {

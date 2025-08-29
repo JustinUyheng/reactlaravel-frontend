@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import {
 	getPendingVendors,
 	approveVendor,
@@ -9,7 +8,6 @@ import "./Dashboard.css";
 import "./DashStyle/Dashboard.css";
 
 const AdminAccountConfirmation = () => {
-	const { user, isAuthenticated } = useAuth();
 	const [pendingVendors, setPendingVendors] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");

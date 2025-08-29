@@ -202,25 +202,30 @@ const AdminDashboard = () => {
 
 		try {
 			switch (tab) {
-				case "all-users":
+				case "all-users": {
 					const usersData = await getAllUsers();
 					setUsers(usersData.users);
 					break;
-				case "vendors":
+				}
+				case "vendors": {
 					const vendorsData = await getAllVendors();
 					setVendors(vendorsData.users);
 					break;
-				case "customers":
+				}
+				case "customers": {
 					const customersData = await getAllCustomers();
 					setCustomers(customersData.users);
 					break;
-				case "pending-vendors":
+				}
+				case "pending-vendors": {
 					const pendingData = await getPendingVendors();
 					setPendingVendors(pendingData.pending_vendors);
 					break;
-				case "feedback":
+				}
+				case "feedback": {
 					await loadFeedback(1);
 					break;
+				}
 				default:
 					break;
 			}
@@ -285,10 +290,10 @@ const AdminDashboard = () => {
 									{user.role_id === 1
 										? "Customer"
 										: user.role_id === 2
-										? "Vendor"
-										: user.role_id === 3
-										? "Admin"
-										: "Unknown"}
+											? "Vendor"
+											: user.role_id === 3
+												? "Admin"
+												: "Unknown"}
 								</td>
 								<td>{user.is_approved ? "Approved" : "Pending"}</td>
 								<td>
@@ -397,7 +402,7 @@ const AdminDashboard = () => {
 										{f.user
 											? `${f.user.firstname ?? ""} ${
 													f.user.lastname ?? ""
-											  }`.trim() || f.user.email
+												}`.trim() || f.user.email
 											: "-"}
 									</td>
 									<td>{f.store ? f.store.business_name : "-"}</td>

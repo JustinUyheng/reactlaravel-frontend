@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import { getAllVendors } from "../LoginSignup/action";
 import "./DashStyle/Dashboard.css";
 import "./Dashboard.css";
 
 const AdminAccountVerified = () => {
-	const { user, isAuthenticated } = useAuth();
 	const [vendors, setVendors] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");

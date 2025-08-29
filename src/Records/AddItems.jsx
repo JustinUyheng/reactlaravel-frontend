@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // Make sure to import useLocation and Link
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import "./RecStyle/AddItems.css";
 import { assets } from "../assets/assets";
 import ListItems from "./ListItems"; // Assuming ListItems.jsx is in the same folder
@@ -39,26 +39,25 @@ const RemoveIcon = () => (
 );
 
 // Helper functions (calculateOrderTotal, countOrderItems) remain the same
-const calculateOrderTotal = (items) => {
-	if (!Array.isArray(items)) return 0;
-	return items.reduce((sum, item) => {
-		const price = parseFloat(item.price) || 0;
-		const quantity = parseInt(item.quantity, 10) || 1;
-		const itemFee = parseFloat(item.fee) || 0;
-		return sum + price * quantity + itemFee;
-	}, 0);
-};
+// const calculateOrderTotal = (items) => {
+// 	if (!Array.isArray(items)) return 0;
+// 	return items.reduce((sum, item) => {
+// 		const price = parseFloat(item.price) || 0;
+// 		const quantity = parseInt(item.quantity, 10) || 1;
+// 		const itemFee = parseFloat(item.fee) || 0;
+// 		return sum + price * quantity + itemFee;
+// 	}, 0);
+// };
 
-const countOrderItems = (items) => {
-	if (!Array.isArray(items)) return 0;
-	return items.reduce(
-		(sum, item) => sum + (parseInt(item.quantity, 10) || 1),
-		0
-	);
-};
+// const countOrderItems = (items) => {
+// 	if (!Array.isArray(items)) return 0;
+// 	return items.reduce(
+// 		(sum, item) => sum + (parseInt(item.quantity, 10) || 1),
+// 		0
+// 	);
+// };
 
 const AddItems = () => {
-	const navigate = useNavigate();
 	const location = useLocation(); // Get current location
 
 	// Determine active tab from URL path
@@ -82,7 +81,7 @@ const AddItems = () => {
 	const [productPrice, setProductPrice] = useState("");
 	const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-	const [imageFile, setImageFile] = useState(null);
+	const [_, setImageFile] = useState(null);
 	const [imagePreview, setImagePreview] = useState(null);
 
 	// State for List Items Tab
