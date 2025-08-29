@@ -205,7 +205,7 @@ const Dasboard = () => {
 		{
 			path: "/admin-orders",
 			label: "Orders",
-			icon: assets.orderr,
+			icon: assets.order,
 			id: "orders",
 		},
 		{
