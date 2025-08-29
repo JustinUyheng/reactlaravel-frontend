@@ -1,0 +1,17 @@
+.store1-caption {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.store1-caption h2 {
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.store1-caption p {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  color: #555;
+}

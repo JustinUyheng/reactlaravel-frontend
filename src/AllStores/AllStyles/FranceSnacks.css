@@ -1,0 +1,209 @@
+/* FranceSnacks.css */
+.fr-snack-container {
+  /* New className */
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  background-color: #fff;
+}
+
+.fr-snack-divider-line {
+  /* New className, was .top-line (unused in original JSX but kept in CSS) */
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 15px;
+}
+
+.fr-snack-breadcrumb-trail {
+  /* New className */
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+.fr-snack-breadcrumb-text {
+  /* New className */
+  text-align: left;
+  font-size: 18px;
+  margin: 20px 0 20px 20px;
+  color: #7b3f00;
+  white-space: nowrap;
+}
+
+.fr-snack-breadcrumb-text .fr-snack-text-highlight {
+  /* New className, was .breadcrumb .highlight (unused in original JSX but kept in CSS) */
+  font-weight: bold;
+  color: #c1272d;
+}
+
+.fr-snack-bistro-name {
+  /* New className for "France Bistro" span */
+  /* Add specific styles if needed, inherits from fr-snack-breadcrumb-text for now */
+}
+
+.fr-snack-navigation-bar {
+  /* New className */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.fr-snack-category-tabs {
+  /* New className */
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+  color: #5a2e0d;
+}
+
+.fr-snack-category-tab {
+  /* New className */
+  cursor: pointer;
+}
+
+.fr-snack-category-tab.fr-snack-tab-active {
+  /* New className for active tab */
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.fr-snack-action-icons {
+  /* New className */
+  display: flex;
+  gap: 15px;
+  margin-right: 20px;
+}
+
+.fr-snack-action-icons img {
+  /* New className */
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.fr-snack-action-icons img:hover {
+  /* New className */
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.fr-snack-item-layout {
+  /* New className */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.fr-snack-item-card {
+  /* New className */
+  border: 2px solid #5a2e0d;
+  background-color: #fff;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  position: relative;
+}
+
+.fr-snack-item-image {
+  /* New className */
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+
+.fr-snack-item-details {
+  /* New className */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 35px; /* Keeps button visible */
+}
+
+.fr-snack-item-name,
+.fr-snack-item-price {
+  /* New classNames */
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.fr-snack-action-buttons {
+  /* New className, now holds only one button */
+  display: flex;
+  gap: 10px; /* Kept gap in case another button is added later, or for styling single button */
+  position: absolute;
+  bottom: 10px;
+  /* Centering the single button if desired, or keeping it to the right */
+  /* For single button, right alignment might be preferred: */
+  right: 10px;
+  /* If centering:
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content; */
+}
+
+.fr-snack-action-buttons button {
+  /* New className */
+  padding: 5px 10px;
+  background-color: #f4cd95;
+  border: 1px solid #c27b34;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 0;
+  font-family: Arial, sans-serif;
+}
+
+.fr-snack-action-buttons button:hover {
+  /* New className */
+  background-color: #e0a85a;
+}
+
+/* Styles from original CSS that were not directly used by the provided JSX, but renamed as requested */
+.fr-snack-cart-summary {
+  /* New className, was .cart-totals */
+  margin: 30px auto;
+  max-width: 500px;
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.fr-snack-cart-summary p {
+  /* New className */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.fr-snack-cart-summary p span {
+  /* New className */
+  font-weight: bold;
+}
+
+.fr-snack-checkout-button {
+  /* New className, was .checkout-btn */
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #3c91e6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fr-snack-checkout-button:hover {
+  /* New className */
+  background-color: #367cd6;
+}

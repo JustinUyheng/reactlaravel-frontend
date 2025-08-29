@@ -1,0 +1,192 @@
+.budget-container {
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.top-line {
+  border: none;
+  height: 2px;
+  background-color: #d0d0d0;
+  margin-bottom: 15px;
+}
+
+.breadcrumb {
+  font-size: 24px;
+  margin-bottom: 25px; /* Adjusted from your original CSS for consistency */
+  color: #5a2e0d;
+  white-space: nowrap;
+}
+
+.breadcrumb .highlight {
+  /* This class was in your CSS but not used in JSX, kept for potential use */
+  font-weight: bold;
+  color: #000;
+}
+
+/* ---------- price tabs ---------- */
+.budget-tabs-bar {
+  /* Added a wrapper for better structure if needed in future */
+  /* No specific styles needed for the bar itself for now */
+}
+
+.price-tabs {
+  display: flex;
+  gap: 40px;
+  font-size: 24px;
+  margin-bottom: 35px;
+  color: #5a2e0d;
+}
+
+.price-tab {
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px; /* Added padding to make space for underline */
+}
+
+.price-tab.active {
+  font-weight: bold;
+}
+
+.price-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Adjusted to be at the very bottom of the tab */
+  width: 100%;
+  height: 3px;
+  background: #c79a14; /* yellow underline */
+}
+
+/* ---------- menu set cards ---------- */
+
+.sets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.set-card {
+  display: flex;
+  border: 2px solid #5a2e0d;
+  /* margin-bottom: 35px; /* Removed as gap from sets-grid handles spacing */
+  position: relative; /* Needed for absolute positioning of icons if you choose that later */
+  background-color: #fff; /* Ensuring card has a background */
+}
+
+.set-images {
+  width: 280px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-right: 1px solid #5a2e0d; /* Apply border to the container */
+}
+
+.set-images img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  /* Removed individual borders from here */
+}
+
+/* Add borders using pseudo-elements or by targeting specific children if needed */
+.set-images img:nth-child(odd) {
+  /* Image on the left */
+  border-right: 1px solid #5a2e0d;
+}
+.set-images img:nth-child(1),
+.set-images img:nth-child(2) {
+  /* Top two images */
+  border-bottom: 1px solid #5a2e0d;
+}
+
+.set-details {
+  flex: 1;
+  padding: 15px 20px;
+  font-size: 18px;
+  line-height: 1.35;
+  display: flex; /* Use flexbox to position content and actions */
+  flex-direction: column; /* Stack content and actions vertically */
+  justify-content: space-between; /* Push actions to the bottom */
+}
+
+.set-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333; /* Example color */
+}
+
+.budget-menu-item-text {
+  margin-bottom: 4px; /* Slightly reduced margin */
+  color: #555; /* Example color */
+}
+
+.breadcrumb-with-records {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px; /* Consistent margin */
+}
+
+.buffet-records-link {
+  /* Matched class name from JSX */
+  font-size: 18px;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buffet-records-link:hover {
+  text-decoration: underline;
+}
+
+.faspecc {
+  color: #e3b041;
+}
+
+/* Styles for the action icons */
+.card-actions {
+  display: flex;
+  justify-content: flex-end; /* Align icons to the right */
+  align-items: center;
+  padding-top: 10px; /* Add some space above the icons */
+  margin-top: auto; /* Pushes the icons to the bottom if content above is shorter */
+}
+
+.action-icon {
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+  cursor: pointer;
+  margin-left: 10px; /* Space between icons */
+}
+
+.action-icon:hover {
+  opacity: 0.7; /* Simple hover effect */
+}
+
+/* Responsive adjustments for smaller screens if needed */
+@media (max-width: 768px) {
+  .sets-grid {
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+  }
+
+  .set-card {
+    flex-direction: column; /* Stack images above details on small screens */
+  }
+
+  .set-images {
+    width: 100%; /* Full width for images */
+    border-right: none; /* Remove right border when stacked */
+    border-bottom: 1px solid #5a2e0d; /* Add bottom border */
+  }
+  .set-images img:nth-child(odd) {
+    border-right: 1px solid #5a2e0d;
+  }
+  .set-images img:nth-child(even) {
+    border-right: none;
+  }
+  .set-images img:nth-child(3),
+  .set-images img:nth-child(4) {
+    border-bottom: none;
+  }
+}

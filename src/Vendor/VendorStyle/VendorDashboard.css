@@ -1,0 +1,105 @@
+.vendor-dashboard {
+	padding: 30px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.vendor-header {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 30px;
+	border-radius: 12px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.vendor-header h1 {
+	margin: 0 0 10px 0;
+	font-size: 2.5rem;
+}
+
+.vendor-header p {
+	margin: 0;
+	font-size: 1.1rem;
+	opacity: 0.9;
+}
+
+.no-store-section {
+	background: white;
+	padding: 40px;
+	border-radius: 12px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.no-store-section h2 {
+	color: #333;
+	margin-bottom: 15px;
+}
+
+.no-store-section p {
+	color: #666;
+	margin-bottom: 30px;
+}
+
+.create-store-btn {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	border: none;
+	padding: 15px 30px;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+.create-store-btn:hover {
+	transform: translateY(-2px);
+}
+
+.store-section {
+	background: white;
+	padding: 30px;
+	border-radius: 12px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.store-section h2 {
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.store-info {
+	background: #f8f9fa;
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 30px;
+}
+
+.store-info p {
+	margin: 8px 0;
+	color: #555;
+}
+
+.store-actions {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+}
+
+.store-actions button {
+	background: #667eea;
+	color: white;
+	border: none;
+	padding: 12px 24px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.store-actions button:hover {
+	background: #5a6fd8;
+}

@@ -1,0 +1,142 @@
+/* ./AllStyles/FranceBistroCategory.css */
+
+.france-bistro-cat-page-container {
+  /* New className */
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.france-bistro-cat-top-line {
+  /* New className (was .faspecc-category-top-line, unused in provided JSX but renamed) */
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0 0 20px 0;
+}
+
+.france-bistro-cat-breadcrumb {
+  /* New className */
+  text-align: left;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.france-bistro-cat-brand-name {
+  /* New className */
+  color: #c1272d;
+  font-weight: bold;
+}
+
+/* Category Grid Styling */
+.france-bistro-cat-grid {
+  /* New className */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 10px 0;
+}
+
+.france-bistro-cat-card {
+  /* New className */
+  position: relative;
+  display: block;
+  height: 200px;
+  text-decoration: none;
+  color: inherit;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+
+.france-bistro-cat-card:hover {
+  /* New className */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.france-bistro-cat-img {
+  /* New className */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.france-bistro-cat-label {
+  /* New className */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  background-color: rgba(106, 74, 59, 0.85);
+  color: white;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 0;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+
+.france-bistro-cat-card:hover .france-bistro-cat-label {
+  /* New className for hover effect */
+  background-color: rgba(106, 74, 59, 1); /* Example hover effect for label */
+}
+
+.france-bistro-cat-caption {
+  /* New className */
+  margin-top: 50px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.france-bistro-cat-caption h2 {
+  /* New className */
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.france-bistro-cat-caption p {
+  /* New className */
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  color: #555;
+}
+
+/* Optional: Basic responsive adjustments */
+@media (max-width: 768px) {
+  .france-bistro-cat-grid {
+    /* New className */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .france-bistro-cat-card {
+    /* New className */
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .france-bistro-cat-grid {
+    /* New className */
+    grid-template-columns: 1fr;
+  }
+  .france-bistro-cat-card {
+    /* New className */
+    height: 160px;
+  }
+  .france-bistro-cat-breadcrumb {
+    /* New className */
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,234 @@
+/* General Navbar Structure */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px; /* You might need to adjust this if content gets hidden */
+  background-color: #fff;
+  /* --- Sticky Navbar Changes START --- */
+  position: fixed; /* Makes the navbar stay in place */
+  top: 0; /* Positions it at the top of the viewport */
+  left: 0; /* Aligns it to the left of the viewport */
+  width: 100%; /* Makes it span the full width of the viewport */
+  z-index: 1000; /* Ensures it stays on top of other content */
+  box-sizing: border-box; /* Ensures padding doesn't add to the width */
+  /* Optional: Add a subtle shadow to make it distinct from content */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  /* --- Sticky Navbar Changes END --- */
+}
+
+/*
+  IMPORTANT: Body/Main Content Padding
+  Since the navbar is now fixed, it will overlay your page content.
+  You need to add padding to the top of your main content container
+  or the body itself to prevent the navbar from hiding the content
+  that would normally be at the top of the page.
+
+  The amount of padding should be at least the height of your navbar.
+  You can inspect your navbar's height in your browser's developer tools.
+  Let's assume your navbar height is around 60px (adjust as needed).
+
+  Add this to your global CSS or the CSS for your main page layout component:
+*/
+/*
+body {
+  padding-top: 60px; /* Adjust this value to your navbar's height */
+/* }
+*/
+/* Or if you have a main content wrapper: */
+/*
+.main-content-area {
+  padding-top: 60px; /* Adjust this value to your navbar's height */
+/* }
+*/
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hamburger {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.ustpfoodlogo {
+  width: 75px; /* Consider if this + padding makes navbar too tall */
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.login-btn,
+.signup-btn {
+  padding: 8px 18px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.login-btn {
+  background-color: #fcbf29;
+  color: black;
+}
+
+.login-btn:hover {
+  background-color: #e0a800;
+}
+
+.signup-btn {
+  background-color: #fcbf29;
+  color: black;
+}
+
+/*
+  Navbar Divider (.navbar-divider):
+  With a fixed navbar, the <hr className="navbar-divider" />
+  will scroll with the page content and appear *behind* the navbar.
+
+  Consider these options for the divider:
+  1. Remove it if not strictly needed.
+  2. Style the navbar itself with a border-bottom if you want a line directly under it:
+     .navbar {
+       ...
+       border-bottom: 1px solid #e0e0e0;
+     }
+     Then you can remove the <hr /> element from your Navbar.jsx.
+  3. If you keep the <hr />, the padding-top on your body/main content
+     might need to be increased slightly to account for its height as well
+     if it's intended to be a visible separator below the fixed navbar before content starts.
+     However, typically a border-bottom on the fixed navbar is cleaner.
+*/
+.navbar-divider {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  width: 100%;
+  margin: 0; /* This will now be relative to the normal flow, behind the fixed navbar */
+  /* If you want this to appear fixed under the navbar, it would need position: fixed as well,
+     and its `top` value would need to be the height of the navbar. This can get complicated.
+     A border-bottom on .navbar is usually simpler.
+  */
+  /* display: block; */ /* Default for hr */
+}
+
+/* --- UPDATED SIDEBAR STYLES to match image_55d9cb.png --- */
+
+/* Sidebar Overlay (Optional, but good for UX) */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Dimming effect */
+  z-index: 1040; /* Below sidebar */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+.sidebar.show ~ .sidebar-overlay {
+  /* If overlay is a sibling after sidebar in JSX */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s 0s;
+}
+
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px; /* Or your desired width */
+  height: 100%;
+  background-color: #fff; /* Default background for content area */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(-100%); /* Hidden by default */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1050; /* Above overlay and navbar */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* In case content is too long */
+}
+
+.sidebar.show {
+  transform: translateX(0); /* Shown */
+}
+
+/* Sidebar Header (Yellow/Orange Background) */
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end; /* Aligns close button to the right */
+  align-items: center;
+  padding: 15px; /* Adjust padding as needed */
+  background-color: #fcbf29; /* Yellow/orange color from image */
+}
+
+.sidebar-close-btn {
+  font-size: 24px; /* Adjust size */
+  font-weight: bold;
+  color: #444; /* Dark gray/black 'x' as in image */
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1; /* Ensure it's vertically centered well */
+}
+
+.sidebar-close-btn:hover {
+  color: #000;
+}
+
+/* Sidebar Content (White Background below header) */
+.sidebar-content {
+  padding: 20px 15px; /* Padding for the items area */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between sidebar items */
+  background-color: #fff; /* Explicitly white if sidebar main bg is different */
+  flex-grow: 1; /* Allows content to take remaining space */
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: #333;
+  display: block; /* Make link take full width */
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-link:hover .sidebar-item {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Padding inside each item */
+  gap: 15px; /* Space between icon and text */
+  font-size: 16px; /* Text size from image */
+  font-weight: 500;
+}
+
+.sidebar-item img {
+  width: 24px; /* Adjust icon size to match image */
+  height: 24px;
+  object-fit: contain;
+}
+
+.sidebar-item span {
+  flex-grow: 1; /* Allows text to take available space */
+}

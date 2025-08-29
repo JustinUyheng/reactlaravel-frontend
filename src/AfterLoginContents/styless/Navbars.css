@@ -1,0 +1,216 @@
+.navbars {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Left Section */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.hamburger {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.ustpfoodlogo {
+  width: 85px;
+  height: 60px;
+}
+
+/* Center Section - Retained if you plan to use it, otherwise can be removed if not used by .navbar-center elements */
+.navbar-center {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.navbar-center a {
+  text-decoration: none;
+  color: black; /* Default color for links in .navbar-center if it were used */
+}
+
+/* This was specific to li items within .navbar-center.
+   If .navbar-center li is not how you structure Home/Stores, this won't apply to them.
+   The .nav-link.active style below will handle Home/Stores. */
+.navbar-center li.active {
+  color: #fcbf29;
+}
+
+.navbar-center li:hover {
+  color: #fcbf29;
+  cursor: pointer;
+}
+
+/* Right Section */
+.navbar-right {
+  display: flex;
+  gap: 10px; /* Adjusted gap for closer items if needed, or revert to original */
+  align-items: center;
+}
+
+/* Styles for .nav-link (Home, Stores) */
+.nav-link {
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  margin: 0 15px; /* Adjusted margin slightly, can be 0 20px as original */
+  display: flex;
+  align-items: center;
+  color: black; /* Default color for nav links: black */
+  padding: 8px 10px; /* Optional: added padding for better click area */
+  border-radius: 5px; /* Optional: for a slightly softer look */
+  transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition */
+}
+
+/* Active state for .nav-link */
+.nav-link.active {
+  color: #fcbf29; /* Active link color: yellow (using your theme color) */
+  /* Optional: add a background or other emphasis for active state */
+  /* background-color: #f0f0f0; */
+}
+
+/* Hover state for .nav-link (optional, but good for UX) */
+.nav-link:hover {
+  color: #e0ac24; /* Slightly darker yellow or different shade on hover */
+  /* background-color: #f8f8f8; */
+}
+
+/* Commenting out old specific styles for .home and .stores as they are now handled by .nav-link and .nav-link.active */
+/*
+.nav-link.home {
+  color: #5c2c06;
+}
+
+.nav-link.stores {
+  color: #f5a300;
+}
+*/
+
+.login,
+.signup {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login {
+  background-color: #fcbf29;
+  border: 2px solid #fcbf29;
+  color: black;
+}
+
+.signup {
+  background-color: #fcbf29;
+  color: black;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+  z-index: 1400; /* Below sidebar, above content */
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Start off-screen */
+  width: 260px; /* Width of the sidebar */
+  height: 100%;
+  background-color: white;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease; /* Smooth slide-in/out animation */
+  z-index: 1500; /* Above overlay */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.show {
+  left: 0; /* Slide in */
+}
+
+.sidebar-header {
+  background-color: #fcbf29; /* Theme color for header */
+  padding: 20px; /* Adjusted padding */
+  padding-top: 60px; /* More padding at top if navbar is tall, or adjust as needed */
+  display: flex;
+  justify-content: flex-end; /* Align close button to the right */
+  align-items: center; /* Vertically align close button */
+  height: 120px; /* Example fixed height, or adjust based on content */
+}
+
+.close-btn {
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333; /* Dark color for close button */
+}
+
+.sidebar-content {
+  background-color: white;
+  padding: 25px 20px; /* Adjusted padding */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between sidebar items */
+  flex-grow: 1; /* Allow content to take remaining space */
+  overflow-y: auto; /* Add scroll if content overflows */
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Increased gap for better spacing */
+  font-weight: bold;
+  font-size: 18px; /* Consistent font size */
+  color: black;
+  cursor: pointer;
+  padding: 10px 15px; /* Add padding for larger clickable area */
+  border-radius: 5px; /* Optional: rounded corners */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.sidebar-item:hover {
+  transform: translateX(5px); /* Subtle movement on hover */
+  background-color: #f0f0f0; /* Light background on hover */
+  color: #fcbf29; /* Change text color on hover to theme color */
+}
+
+.sidebar-item img {
+  width: 24px;
+  height: 24px;
+}
+
+.User {
+  /* Style for the user icon in the navbar */
+  width: 28px; /* Slightly larger */
+  height: 28px;
+  cursor: pointer;
+}
+
+.navbar-divider {
+  height: 1px;
+  background-color: #e0e0e0; /* Lighter divider color */
+  border: none;
+  width: 100%;
+  margin: 0;
+}

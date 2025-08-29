@@ -1,0 +1,99 @@
+import React, { createContext, useContext, useState, useEffect } from "react";
+import {
+	isAuthenticated,
+	getCurrentUser,
+	logoutUser,
+	getUserProfile,
+} from "../LoginSignup/action";
+
+const AuthContext = createContext();
+
+export const useAuth = () => {
+	const context = useContext(AuthContext);
+	if (!context) {
+		throw new Error("useAuth must be used within an AuthProvider");
+	}
+	return context;
+};
+
+export const AuthProvider = ({ children }) => {
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		console.log("AuthContext - Starting authentication check...");
+		console.log("localStorage auth_token:", localStorage.getItem("auth_token"));
+		console.log("localStorage user_data:", localStorage.getItem("user_data"));
+
+		// Check if user is authenticated on app load
+		if (isAuthenticated()) {
+			console.log("User is authenticated, loading from localStorage...");
+
+			// Immediately load user from localStorage
+			const userData = getCurrentUser();
+			if (userData) {
+				console.log("Setting user from localStorage:", userData);
+				setUser(userData);
+				// Set loading to false immediately so components can render
+				setLoading(false);
+			}
+
+			// Try to refresh from API in the background
+			getUserProfile()
+				.then((data) => {
+					console.log("Profile refreshed successfully from API:", data.user);
+					setUser(data.user);
+					// Update localStorage with fresh data
+					localStorage.setItem("user_data", JSON.stringify(data.user));
+				})
+				.catch((error) => {
+					console.error("Failed to fetch user profile:", error);
+					// Keep using localStorage data if API fails
+					const userData = getCurrentUser();
+					if (userData) {
+						console.log("Using localStorage data:", userData);
+						setUser(userData);
+					}
+				});
+		} else {
+			console.log("User not authenticated - no token found");
+			setLoading(false);
+		}
+	}, []);
+
+	const login = (userData) => {
+		console.log("Login called with:", userData);
+		setUser(userData);
+	};
+
+	const logout = async () => {
+		await logoutUser();
+		setUser(null);
+	};
+
+	// Function to refresh user profile
+	const refreshProfile = async () => {
+		if (isAuthenticated()) {
+			try {
+				const data = await getUserProfile();
+				setUser(data.user);
+				localStorage.setItem("user_data", JSON.stringify(data.user));
+				return data.user;
+			} catch (error) {
+				console.error("Failed to refresh profile:", error);
+				throw error;
+			}
+		}
+	};
+
+	const value = {
+		user,
+		login,
+		logout,
+		refreshProfile,
+		isAuthenticated: !!user,
+		loading,
+	};
+
+	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

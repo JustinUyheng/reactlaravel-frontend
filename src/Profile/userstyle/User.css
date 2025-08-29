@@ -1,0 +1,659 @@
+/* General Styles */
+.user-profile-container {
+  font-family: sans-serif;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #fff;
+  color: #333;
+}
+
+.btn-outline {
+  padding: 8px 18px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  color: black;
+}
+
+.btn-outline:hover {
+  background-color: #f5f5f5;
+  border-color: #bbb;
+  color: black;
+}
+
+.btn-primary {
+  padding: 10px 25px;
+  border: none;
+  background-color: #fcbf29; /* Primary color (yellow/orange) */
+  color: #333; /* Dark text for contrast */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #f5a300;
+}
+
+/* Header Section */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.profile-image-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.profile-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #eee;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-pic-edit-icon {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic-edit-icon img {
+  width: 16px;
+  height: 16px;
+}
+
+.user-info-main {
+  text-align: center;
+  margin-bottom: 15px;
+  width: 100%; /* Allow inputs to take width */
+  max-width: 300px; /* Limit width */
+}
+
+.user-email-main {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 2px 0;
+  color: #333;
+  word-break: break-all;
+}
+.user-email-main-input {
+  /* Style for email input in header */
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.user-name-display {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+.user-name-display-input {
+  /* Style for name input in header */
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.edit-profile-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 0 0 30px 0;
+}
+
+/* Section Rows */
+.profile-section-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: flex-start; /* Key change for independent card heights */
+}
+
+/* Profile Card */
+.profile-card {
+  flex: 1; /* Distribute space */
+  /* min-width is already set, which is good */
+  border: 1px solid #f0ad4e;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  /* Remove fixed height or min-height if any were accidentally added,
+     let content define height, but align-items: flex-start on parent will handle alignment */
+}
+
+/* If you want to ensure the address card specifically doesn't grow too tall
+   if its content is small, while settings is tall: */
+.address-card .card-content {
+  /* You might not need this if align-items: flex-start is enough */
+  /* flex-grow: 0; /* Prevent it from growing if not needed */
+}
+.settings-card .card-content {
+  /* flex-grow: 1; /* Allow settings card to use available space if needed */
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.card-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-content {
+  font-size: 15px;
+  line-height: 1.6;
+  flex-grow: 1; /* Allow content within a card to take space if needed */
+}
+
+/* Personal Details Card */
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  gap: 8px;
+  align-items: center; /* Changed from baseline to center for input fields */
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #333;
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  color: #555;
+  flex-grow: 1;
+  word-break: break-word;
+}
+/* Input fields within .detail-item */
+.detail-item .editable-input {
+  flex-grow: 1; /* Allow input to take remaining space */
+  width: auto; /* Override default width if any */
+}
+
+/* History Transaction Card */
+.history-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 14px;
+  align-items: center;
+}
+
+.history-row:last-child {
+  border-bottom: none;
+}
+
+.history-header {
+  font-weight: bold;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.history-col.status-header {
+  text-align: left;
+}
+
+.history-col {
+  text-align: left;
+  word-break: break-word;
+}
+
+.history-col.amount {
+  text-align: left;
+}
+.history-col.status {
+  text-align: left;
+}
+
+.status-btn {
+  padding: 5px 12px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: default;
+  color: #fff;
+  min-width: 80px;
+  text-align: center;
+}
+
+.reserve-btn {
+  background-color: #fcbf29;
+  border-color: #f0ad4e;
+  color: #333;
+}
+
+.order-btn {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+/* Settings Card */
+.setting-label {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+}
+
+.password-input-group {
+  margin-bottom: 15px;
+}
+
+.password-field-label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0 5px 0 10px;
+  background-color: #fff;
+}
+
+.password-input-container:focus-within {
+  border-color: #f0ad4e;
+  box-shadow: 0 0 0 0.2rem rgba(240, 173, 78, 0.25);
+}
+
+.password-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 10px 5px;
+  font-size: 15px;
+  min-width: 50px;
+  background-color: transparent;
+}
+
+.input-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  margin: 0 5px;
+  flex-shrink: 0;
+}
+
+.input-icon:hover {
+  opacity: 1;
+}
+
+.save-password-btn {
+  display: block;
+  margin-top: 20px;
+}
+
+/* Saved Addressed Card */
+.address-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  /* flex-grow: 1; -- This might be causing it to grow with sibling.
+                     If align-items: flex-start on parent is not enough,
+                     consider setting a max-height or ensuring its flex-grow is 0 if settings is 1
+  */
+}
+
+.address-text {
+  margin: 0;
+  flex-grow: 1;
+  color: #333;
+  word-break: break-word;
+  padding: 8px 0;
+  line-height: 1.4;
+}
+
+.edit-address-btn,
+.save-address-btn {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.address-input-field {
+  flex-grow: 1;
+}
+
+/* Footer Section */
+.profile-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+/* Styles for Inputs during Edit Mode (General) */
+.editable-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: inherit;
+  box-sizing: border-box;
+  line-height: 1.4;
+  color: #333; /* Ensure text is visible */
+}
+.editable-input:focus {
+  border-color: #f0ad4e;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(240, 173, 78, 0.25);
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: #eee;
+}
+
+.icon-btn img {
+  width: 22px;
+  height: 22px;
+  opacity: 0.8;
+}
+
+.icon-btn:hover img {
+  opacity: 1;
+}
+
+/* Modal Styles - unchanged */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 450px;
+}
+
+.modal-icon-container {
+  margin-bottom: 20px;
+}
+
+.modal-icon {
+  width: 50px;
+  height: auto;
+  max-height: 60px;
+  opacity: 0.8;
+  object-fit: contain;
+}
+
+.modal-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.modal-btn-logout {
+  background-color: #fcbf29;
+  color: #333;
+}
+.modal-btn-logout:hover {
+  background-color: #f5a300;
+}
+
+.modal-btn-stay {
+  border: 1px solid #fcbf29;
+  color: #333;
+}
+.modal-btn-stay:hover {
+  background-color: #fff5e1;
+  border-color: #f5a300;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .profile-header {
+    align-items: center;
+  }
+  .edit-profile-btn {
+    position: static;
+    margin-top: 15px;
+    align-self: center;
+  }
+
+  .profile-section-row {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch; /* When stacked, let them take full width */
+  }
+  .profile-card {
+    min-width: unset;
+    width: 100%;
+  }
+  .history-row {
+    grid-template-columns: 1fr 1fr 0.8fr 1fr;
+    font-size: 13px;
+    gap: 8px;
+  }
+  .status-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+    min-width: 70px;
+  }
+  .address-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .address-text {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .edit-address-btn,
+  .save-address-btn {
+    margin-top: 10px;
+    align-self: flex-end;
+  }
+  .profile-footer {
+    justify-content: center;
+  }
+  .modal {
+    padding: 20px;
+    max-width: 90%;
+  }
+  .modal-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .modal-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-profile-container {
+    padding: 15px;
+  }
+  .profile-header {
+    padding-bottom: 10px;
+  }
+  .profile-icon {
+    width: 80px;
+    height: 80px;
+  }
+  .profile-pic-edit-icon {
+    padding: 4px;
+  }
+  .profile-pic-edit-icon img {
+    width: 14px;
+    height: 14px;
+  }
+  .user-info-main input.editable-input {
+    /* Targeting inputs in header */
+    font-size: 14px; /* Match other small screen inputs */
+  }
+
+  .edit-profile-btn,
+  .btn-primary,
+  .btn-outline {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+  .profile-card {
+    padding: 15px;
+  }
+  .card-header {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .card-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .card-title {
+    font-size: 17px;
+  }
+  .card-content,
+  .editable-input, /* General editable input style */
+  .password-input {
+    font-size: 14px;
+  }
+  .detail-label {
+    width: auto;
+    min-width: 70px; /* Adjusted min-width */
+    margin-right: 5px;
+    font-size: 13px; /* Adjust label font size too */
+  }
+  .detail-item {
+    flex-wrap: wrap;
+    align-items: center; /* Center items when wrapped */
+  }
+  .detail-item .editable-input {
+    font-size: 13px; /* Match label or desired input size */
+  }
+  .history-row {
+    font-size: 12px;
+    grid-template-columns: 1.2fr 1.2fr 0.8fr 0.8fr;
+    gap: 5px;
+  }
+  .history-header {
+    font-size: 11px;
+  }
+  .status-btn {
+    padding: 3px 8px;
+    font-size: 10px;
+    min-width: 60px;
+  }
+  .password-field-label {
+    font-size: 13px;
+  }
+  .password-input-container {
+    padding: 0 3px 0 8px;
+  }
+  .input-icon {
+    width: 18px;
+    height: 18px;
+    margin: 0 3px;
+  }
+  .save-password-btn {
+    font-size: 14px;
+    padding: 9px 20px;
+  }
+  .modal-icon {
+    width: 40px;
+    max-height: 50px;
+  }
+}

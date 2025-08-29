@@ -1,0 +1,332 @@
+/* ... (Keep all your existing CSS above this) ... */
+
+.option-card {
+  display: flex;
+  border: 1px solid #5a2e0d;
+  background-color: #fff;
+  align-items: stretch;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative; /* Added for positioning icons if needed, but flexbox might be enough */
+}
+
+.option-images {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.option-images img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* New wrapper for text and icons in option-card */
+.option-content {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes details to top, actions to bottom */
+}
+
+.option-details {
+  /* flex: 1; -- This might not be needed anymore if option-content handles flex */
+  font-size: 14px;
+  /* padding: 15px; -- Moved padding to option-content */
+  display: flex;
+  flex-direction: column;
+}
+
+.option-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.option-details p {
+  margin: 3px 0;
+  color: #555;
+}
+
+/* Styles for the action icons container */
+.card-actions {
+  display: flex;
+  justify-content: flex-end; /* Aligns icons to the right */
+  align-items: center;
+  margin-top: 10px; /* Add some space above the icons */
+}
+
+.action-icon {
+  width: 16px; /* Adjust size as needed */
+  height: 16px; /* Adjust size as needed */
+  margin-left: 10px; /* Space between icons */
+  cursor: pointer;
+}
+
+
+/* Drink Card Styles */
+.drink-card {
+  border: 1px solid #5a2e0d;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px; /* Adjusted padding to be on the card itself */
+  position: relative; /* For icon positioning */
+}
+
+.drink-card .drink-image { /* More specific selector for the main image */
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px; /* Space between image and info */
+}
+
+.drink-info {
+  /* padding: 10px; -- Padding moved to drink-card or can be adjusted here */
+  text-align: center;
+  width: 100%;
+  flex-grow: 1; /* Allows info to take available space */
+}
+
+.drink-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.drink-price {
+  font-size: 14px;
+  color: #5a2e0d;
+  font-weight: bold;
+  margin-bottom: 10px; /* Space between price and icons */
+}
+
+/* Repositioning card-actions for drink-card to match the image */
+.drink-card .card-actions {
+  width: calc(100% - 20px); /* Align with padding of the card */
+  position: absolute;
+  bottom: 10px; /* Position at the bottom of the card */
+  right: 10px; /* Position to the right of the card */
+  justify-content: flex-end; /* Icons to the right */
+  /* margin-top is not needed here due to absolute positioning */
+}
+
+.drink-card .action-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px; /* Slightly less margin for smaller cards */
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.7); /* Optional: slight background for visibility if icons are dark */
+  border-radius: 3px; /* Optional */
+  padding: 2px; /* Optional */
+}
+
+
+/* ... (Keep all your existing CSS below this) ... */
+.buffet-container {
+  padding: 0 20px;
+  margin: 0;
+  /* You can keep a margin-bottom here if it helps with spacing
+     relative to other potential sibling components, but the
+     spacer div will ensure the visual gap at the end of this
+     component’s content. */
+  /* margin-bottom: 20px; */ /* Example */
+}
+
+hr {
+  /* This style was in your original CSS but not used in the JSX. Keep if needed elsewhere. */
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 10px;
+}
+
+.buffet-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.buffet-path {
+  font-size: 18px;
+}
+
+.buffet-records-link {
+  font-weight: bold;
+  color: #5a2e0d;
+  text-decoration: none;
+}
+
+.buffet-tabs {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.buffet-tab {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buffet-tab.active {
+  text-decoration: underline;
+  text-decoration-color: #ffc107; /* Assuming this is a desired color */
+  text-underline-offset: 6px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* Responsive adjustments for options grid */
+@media (max-width: 768px) {
+  .options-grid {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+  }
+}
+
+.option-card {
+  display: flex;
+  border: 1px solid #5a2e0d;
+  background-color: #fff;
+  align-items: stretch;            /* Ensures children stretch to the same height */
+  border-radius: 5px;              /* Rounded corners */
+  overflow: hidden;                /* Contain child elements like images */
+}
+
+.option-images {
+  flex: 1;                         /* Half the space */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Height now flexible—images dictate it */
+}
+
+.option-images img {
+  width: 100%;
+  height: 100px;                   /* Or set a consistent aspect ratio / max-height */
+  object-fit: cover;
+}
+
+.option-details {
+  flex: 1;                         /* The other half */
+  font-size: 14px;
+  padding: 15px;                   /* Slightly more padding */
+  display: flex;
+  flex-direction: column;
+}
+
+.option-title {
+  font-weight: bold;
+  font-size: 16px;                 /* Slightly larger title */
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.option-details p {
+  margin: 3px 0;                   /* Spacing between menu items */
+  color: #555;
+}
+
+.drinks-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 40px 0 20px;             /* Top & bottom spacing */
+  color: #333;
+}
+
+.drinks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Default to 4 columns */
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* Responsive adjustments for drinks grid */
+@media (max-width: 992px) {
+  .drinks-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .drinks-grid {
+    grid-template-columns: 1fr;           /* 1 column on small screens */
+  }
+}
+
+.drink-card {
+  border: 1px solid #5a2e0d;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;            /* Padding at the bottom */
+}
+
+.drink-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  /* border-bottom: 1px solid #ccc; */ /* Optional—card border may suffice */
+}
+
+.drink-info {
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.drink-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.drink-price {
+  font-size: 14px;
+  color: #5a2e0d;
+  font-weight: bold;
+}
+
+.breadcrumb {
+  /* Style reused for .buffet-path */
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.faspecc {
+  font-weight: bold;
+  color: #e3b041;                  /* Gold-like */
+}
+
+.top-line {
+  /* Optional decorative rule */
+  border: none;
+  height: 2px;
+  background-color: #ccc;
+  margin: 20px 0 10px;
+}
+
+/* Spacer div at the bottom of the page */
+.page-bottom-spacer {
+  height: 20px;                   /* Creates the white gap */
+  width: 100%;
+}

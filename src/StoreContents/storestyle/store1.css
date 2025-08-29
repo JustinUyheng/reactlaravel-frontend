@@ -1,0 +1,97 @@
+.store1-page-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.store1-top-line {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0 0 20px 0;
+}
+
+.store1-breadcrumb {
+  text-align: left;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.store1-breadcrumb-brand {
+  color: #c1272d;
+  font-weight: bold;
+}
+
+/* Category Grid Styling */
+.store1-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 10px 0;
+}
+
+.store1-category-card {
+  position: relative;
+  display: block;
+  height: 200px;
+  text-decoration: none;
+  color: inherit;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+
+.store1-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.store1-category-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* MODIFIED LABEL STYLES */
+.store1-category-label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  background-color: rgba(106, 74, 59, 0.85);
+
+  color: white;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 0;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+
+.store1-caption {
+  margin-top: 50px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.store1-caption h2 {
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.store1-caption p {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  color: #555;
+}

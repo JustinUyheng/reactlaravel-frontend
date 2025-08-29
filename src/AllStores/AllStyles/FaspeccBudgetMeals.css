@@ -1,0 +1,190 @@
+/* ./AllStyles/FaspeccBudgetMeals.css */
+
+/* Main container - wider layout */
+.fbm-page-container {
+  /* Was: .budget-container */
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 10px 20px 10px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.fbm-top-line {
+  /* Was: .top-line */
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0 0 15px 0;
+}
+
+/* Breadcrumb styling */
+.breadcrumb {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: normal;
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.fbm-brand-name {
+  /* Mapped from original .breadcrumb .breadcrumb-line-1 */
+  font-weight: bold;
+  color: #d32f2f; /* Original color for the first part of breadcrumb */
+}
+
+.fbm-controls-bar {
+  /* Was: .budget-tabs-and-icons-bar */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.fbm-price-tabs {
+  /* Was: .price-tabs */
+  display: flex;
+  gap: 25px;
+}
+
+.fbm-price-tab {
+  /* Was: .price-tab */
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  padding: 5px 0;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+}
+
+.fbm-price-tab.active {
+  color: #000000; /* Black text for active tab */
+  border-bottom-color: #e3b041; /* Gold/yellow underline to match other components */
+}
+
+.fbm-action-icons {
+  /* Was: .budget-action-icons */
+  display: flex;
+  gap: 18px;
+}
+
+.fbm-action-icons img {
+  /* Was: .budget-action-icons img */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.fbm-action-icons img:hover {
+  /* Was: .budget-action-icons img:hover */
+  opacity: 1;
+}
+
+/* Budget Meal Cards */
+.fbm-sets-grid {
+  /* Was: .sets-grid */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Original */
+  gap: 20px; /* Original */
+  margin-bottom: 30px; /* Original */
+}
+
+.fbm-set-card {
+  /* Was: .set-card */
+  border: 1px solid #ddd; /* Original */
+  background-color: #fff; /* Original */
+  display: flex; /* Original */
+  overflow: hidden; /* Original */
+}
+
+.fbm-set-card-images {
+  /* Was: .set-images */
+  flex: 0 0 45%; /* Original */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Original */
+  grid-template-rows: repeat(2, 1fr); /* Original */
+}
+
+.fbm-set-card-images img {
+  /* Was: .set-images img */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Original */
+}
+
+.fbm-set-card-details {
+  /* Was: .set-details */
+  padding: 15px 15px; /* Original */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.fbm-set-card-title {
+  /* Was: .set-title */
+  font-weight: bold;
+  font-size: 14px; /* Original */
+  color: #000; /* Original */
+  margin-top: 0;
+  margin-bottom: 8px; /* Original */
+}
+
+.fbm-set-card-menu-item {
+  /* Was: .budget-menu-item-text */
+  font-size: 12px; /* Original */
+  color: #333; /* Original */
+  margin: 2px 0; /* Original */
+  line-height: 1.4; /* Original */
+}
+
+.fbm-set-card-actions {
+  /* Was: .budget-button-row */
+  display: flex;
+  gap: 8px; /* Original */
+  margin-top: auto;
+  padding-top: 10px; /* Original */
+  justify-content: flex-end; /* Keeps single button to the right */
+}
+
+.fbm-set-card-actions button {
+  /* Was: .budget-button-row button */
+  padding: 4px 10px; /* Original */
+  font-size: 10px; /* Original */
+  background-color: #f4cd95; /* Original */
+  color: #ffffff; /* Original */
+  border: none; /* Original */
+  border-radius: 2px; /* Original */
+  cursor: pointer; /* Original */
+  font-weight: bold; /* Original */
+  text-transform: none; /* Text casing changed */
+  letter-spacing: normal; /* Letter spacing adjusted (original was 0.5px) */
+  transition: background-color 0.2s ease; /* Original */
+}
+
+.fbm-set-card-actions button:hover {
+  /* Was: .budget-button-row button:hover */
+  background-color: #e0a800; /* Original */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fbm-sets-grid {
+    grid-template-columns: 1fr;
+  }
+  .fbm-controls-bar {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  .fbm-price-tabs {
+    justify-content: center;
+  }
+}

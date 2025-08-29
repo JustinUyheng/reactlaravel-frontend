@@ -1,0 +1,667 @@
+/* AddItems.css */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  /* IMPORTANT: If not already globally set, ensure body has padding for the main fixed navbar */
+  /* padding-top: 60px; /* Replace 60px with your actual main navbar height */
+}
+
+.additems-page-container {
+  display: flex; /* This will be useful for overall structure */
+  flex-direction: column; /* Content flows downwards */
+  min-height: calc(
+    100vh - 60px
+  ); /* Adjust 60px if body doesn't have padding-top */
+  /* If body has padding-top for the main navbar, min-height could be 100vh,
+     and the .additems-body-container will naturally start below it.
+     However, if .additems-page-container is the first element after the navbar,
+     it might need its own padding-top if body padding isn't used.
+     For now, assuming body padding handles the main navbar. */
+}
+
+.additems-body-container {
+  display: flex; /* This remains useful for sidebar and main content alignment */
+  flex-grow: 1;
+  /* The main site navbar's height should be handled by body padding.
+     If not, you might add padding-top here:
+     padding-top: 60px; /* Main Navbar Height */
+  /* However, the sidebar will also have 'top: 60px' so this might be redundant
+     if the sidebar starts at the same vertical level.
+  */
+}
+
+/* === MODIFIED SIDEBAR STYLES === */
+.additems-sidebar {
+  width: 260px;
+  background-color: #ffffff;
+  padding: 20px 15px; /* Keep padding for internal content */
+  border-right: 1px solid #e0e0e0;
+  /* display: flex; /* Not needed if position:fixed */
+  /* flex-direction: column; /* Not needed if position:fixed */
+  flex-shrink: 0;
+
+  /* --- Fixed Sidebar CSS --- */
+  position: fixed;
+  top: 60px; /* Replace 60px with your actual main navbar height */
+  left: 0;
+  height: calc(
+    100vh - 60px
+  ); /* Full viewport height minus main navbar height */
+  overflow-y: auto; /* Allow sidebar to scroll if content is too long */
+  z-index: 900; /* Below main navbar (e.g., 1000) but above main content */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.additems-sidebar-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #8b4513;
+  margin: 0 0 20px 0;
+  padding-left: 5px;
+}
+
+.additems-sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.additems-sidebar-link {
+  /* Renamed from .additems-sidebar-item for clarity with Link component */
+  text-decoration: none;
+  color: inherit; /* Ensures Link inherits text color if not overridden by .additems-sidebar-item-style */
+}
+
+.additems-sidebar-item {
+  /* This class is now applied to the div/span inside Link if needed, or directly to Link */
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 0px; /* Keep your original styling */
+  background-color: #fff; /* Keep your original styling */
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.sidebar-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
+.additems-sidebar-item:hover {
+  background-color: #f0f0f0;
+  border-color: #b1b1b1;
+  color: #000;
+}
+
+.additems-sidebar-item.active {
+  background-color: #fff9c4; /* Active state yellow background */
+  color: #5d4037; /* Active state brown text */
+  border-color: #8b4513; /* Active state brown border */
+  font-weight: bold;
+}
+
+/* === MODIFIED MAIN CONTENT STYLES === */
+.additems-main-content {
+  flex-grow: 1;
+  padding: 30px; /* Keep your existing padding */
+  background-color: #ffffff; /* Or your desired background */
+  overflow-y: auto; /* Allows main content to scroll independently */
+
+  /* --- Adjust for Fixed Sidebar --- */
+  margin-left: 260px; /* Should be equal to the .additems-sidebar width */
+  /* The main content should also effectively start below the main site navbar.
+     If body padding handles the main navbar, and sidebar's top is set correctly,
+     no extra padding-top is needed here for the main navbar.
+     Its height will be constrained by the viewport minus main navbar height naturally.
+  */
+  /* min-height: calc(100vh - 60px); /* Ensure it can fill screen height below navbar */
+  /* The above min-height is usually not needed if .additems-body-container handles flex-grow
+     and the sidebar has a fixed height taking up the vertical space. */
+}
+
+/* --- Add Items Form Styles --- */
+/* (Keep all your existing form styles, list item styles, order styles etc. as they are) */
+/* ... your existing styles for .additems-form, .listitems-container, .admin-orders-container etc. ... */
+.additems-form {
+  max-width: 700px;
+  margin: 0; /* Form is now within the padded .additems-main-content */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.additems-form-section {
+  display: flex;
+  flex-direction: column;
+}
+.additems-form-section label,
+.additems-upload-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+.additems-form-section input[type="text"],
+.additems-form-section input[type="number"],
+.additems-form-section textarea {
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+}
+.additems-price-input-wrapper input[type="number"] {
+  text-align: left;
+}
+.additems-price-input-wrapper input[type="number"]::placeholder {
+  color: #999;
+}
+.additems-form-section input[type="text"]:focus,
+.additems-form-section input[type="number"]:focus,
+.additems-form-section textarea:focus {
+  outline: none;
+  border-color: #8b4513;
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+  background-color: #fff;
+}
+.additems-form-section textarea {
+  resize: vertical;
+}
+.additems-form-section textarea::placeholder {
+  color: #999;
+}
+.additems-upload-section .additems-image-placeholder {
+  width: 150px;
+  height: 150px;
+  background-color: #e9ecef;
+  border: 2px dashed #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #888;
+  font-size: 14px;
+  overflow: hidden;
+}
+.upload-placeholder-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+.image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.additems-form-row {
+  display: flex;
+  gap: 20px;
+}
+.additems-form-row > .additems-form-section {
+  flex: 1;
+}
+.additems-custom-select {
+  position: relative;
+  width: 100%;
+}
+.additems-select-selected {
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+.additems-custom-select:focus-within .additems-select-selected,
+.additems-select-selected:focus {
+  border-color: #8b4513;
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+  background-color: #fff;
+}
+.additems-select-arrow {
+  transition: transform 0.2s ease;
+}
+.additems-select-arrow.open {
+  transform: rotate(180deg);
+}
+.additems-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-top: none;
+  border-radius: 0;
+  z-index: 10; /* Keep this z-index for dropdown */
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.additems-select-option {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.additems-select-option:hover {
+  background-color: #f0f0f0;
+}
+/* This style for first-child might make one option look pre-selected or different, review if needed */
+/* .additems-select-option:first-child {
+  background-color: #e9ecef;
+} */
+.additems-add-button {
+  padding: 12px 20px;
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  align-self: flex-start;
+}
+.additems-add-button:hover {
+  background-color: #e0a800;
+}
+.additems-success-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure notification is on top */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+/* Existing ListItems and Orders styles */
+/* ======================================== */
+/* === List Items Table Styles (REVERTED) */
+/* ======================================== */
+.listitems-container {
+  width: 100%;
+}
+.listitems-title {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  padding-left: 5px;
+}
+.listitems-table-wrapper {
+  max-height: calc(
+    100vh - 60px - 30px - 30px - 50px
+  ); /* Example: 100vh - navbarH - mainContentPaddingY - titleH - buffer */
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+}
+.listitems-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.listitems-table th,
+.listitems-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #333;
+}
+.listitems-table tr:last-child td {
+  border-bottom: none;
+}
+.listitems-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+  font-size: 13px;
+  white-space: nowrap;
+  border-bottom-width: 1px;
+  border-bottom-color: #e0e0e0;
+  position: sticky; /* Make table headers sticky */
+  top: 0; /* Stick to the top of .listitems-table-wrapper */
+  z-index: 1; /* Ensure headers are above table content when scrolling */
+}
+.listitems-no-items {
+  text-align: center;
+  color: #777;
+  padding: 30px;
+  font-style: italic;
+}
+.listitems-table td:nth-child(1) {
+  width: 70px;
+}
+.listitems-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  vertical-align: middle;
+}
+.listitems-table th:nth-child(4),
+.listitems-table td:nth-child(4) {
+  text-align: right;
+  width: 100px;
+}
+.listitems-table th:nth-child(5),
+.listitems-table td:nth-child(5) {
+  text-align: center;
+  width: 80px;
+}
+.listitems-remove-button {
+  background-color: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 4px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.listitems-remove-button:hover {
+  background-color: #dc3545;
+  color: white;
+}
+.listitems-remove-button svg {
+  display: block;
+}
+/* ======================================== */
+/* === END List Items Table Styles === */
+/* ======================================== */
+
+/* ======================================== */
+/* === Admin Orders Tab Styles === */
+/* ======================================== */
+.admin-orders-container {
+  width: 100%;
+}
+.admin-orders-title {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+}
+.admin-orders-no-orders {
+  text-align: center;
+  color: #777;
+  padding: 40px;
+  font-style: italic;
+  background-color: #f8f9fa;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+}
+.admin-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: calc(100vh - 60px - 30px - 30px - 50px); /* Example */
+  overflow-y: auto;
+}
+.admin-order-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 0px;
+  background-color: #fff;
+}
+.admin-order-icon {
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.admin-order-icon img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+.admin-order-main-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.admin-order-items {
+  font-weight: 600;
+  color: #212529;
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.4;
+}
+.admin-order-customer {
+  font-size: 13px;
+  color: #6c757d;
+  line-height: 1.5;
+}
+.admin-order-customer p {
+  margin: 0 0 2px 0;
+}
+.customer-name {
+  font-weight: 500;
+  color: #495057;
+}
+.admin-order-summary {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-size: 14px;
+  min-width: 90px;
+  text-align: right;
+  padding-top: 2px;
+}
+.admin-order-item-count {
+  color: #6c757d;
+  margin: 0;
+  font-size: 13px;
+}
+.admin-order-total-price {
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+}
+.admin-order-status {
+  flex-shrink: 0;
+  min-width: 170px;
+}
+.status-select {
+  width: 100%;
+  padding: 8px 28px 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="%236c757d" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 10px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.status-select:focus {
+  outline: none;
+  border-color: #8b4513;
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+}
+
+/* --- Status Dropdown Background Colors (Food Processing Updated) --- */
+.status-select.status-food-processing {
+  background-color: #fff9c4; /* Updated yellow background */
+  border-color: #8b4513; /* Brown border for consistency */
+  color: #5d4037; /* Brown text for consistency */
+}
+.status-select.status-ready-for-pickup {
+  background-color: #fff3cd; /* Default yellow for "Ready for pickup" */
+  border-color: #ffeeba;
+  color: #856404;
+}
+.status-select.status-item-picked-up {
+  background-color: #d4edda; /* Green background for "Item picked up" */
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+/* ======================================== */
+/* === END Admin Orders Tab Styles === */
+/* ======================================== */
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 992px) {
+  /* For admin order cards, keep existing responsive styles */
+  .admin-order-card {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .admin-order-main-details {
+    width: 100%;
+    order: 1;
+  }
+  .admin-order-summary {
+    order: 2;
+    width: calc(50% - 10px);
+    align-items: flex-start;
+    text-align: left;
+    min-width: unset;
+    padding-top: 0;
+  }
+  .admin-order-status {
+    order: 3;
+    width: calc(50% - 10px);
+    min-width: unset;
+  }
+  .admin-order-icon {
+    order: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .additems-body-container {
+    flex-direction: column;
+    /* If body has padding-top for main navbar, that should still apply.
+       No additional padding-top needed here if sidebar stacks. */
+  }
+
+  /* === Sidebar reverts to static flow on smaller screens === */
+  .additems-sidebar {
+    position: static; /* Revert from fixed */
+    width: 100%;
+    height: auto; /* Revert from calc(100vh - ...) */
+    overflow-y: visible; /* Revert from auto */
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px;
+    z-index: auto; /* Revert z-index */
+    /* top and left are irrelevant for static positioning */
+  }
+
+  .additems-sidebar-title {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-left: 0;
+  }
+  .additems-sidebar nav ul {
+    flex-direction: row; /* Horizontal tabs on mobile */
+    justify-content: center;
+    gap: 5px; /* Reduced gap */
+    flex-wrap: wrap; /* Allow wrapping if many tabs */
+  }
+  .additems-sidebar-item {
+    /* Applied to Link or items inside */
+    flex-grow: 1; /* Make tabs distribute space */
+    justify-content: center; /* Center text/icon within tab */
+    padding: 10px 10px; /* Adjust padding */
+    font-size: 14px;
+  }
+
+  /* === Main content takes full width on smaller screens === */
+  .additems-main-content {
+    margin-left: 0; /* Revert margin-left */
+    padding: 20px;
+    /* min-height might not be necessary if content dictates height */
+  }
+
+  .additems-form-row {
+    flex-direction: column;
+  }
+
+  /* Responsive styles for admin order cards */
+  .admin-order-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .admin-order-icon {
+    display: none; /* Hide icon on very small screens for space */
+  }
+  .admin-order-main-details,
+  .admin-order-summary,
+  .admin-order-status {
+    width: 100%;
+    order: unset; /* Reset order if previously set */
+  }
+  .admin-order-summary {
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px dashed #eee;
+    padding-top: 10px;
+  }
+
+  /* Adjust table wrapper height on mobile if needed */
+  .listitems-table-wrapper,
+  .admin-orders-list {
+    max-height: 60vh; /* Or another suitable value for mobile */
+  }
+}
+
+/* Final adjustments for consistency */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

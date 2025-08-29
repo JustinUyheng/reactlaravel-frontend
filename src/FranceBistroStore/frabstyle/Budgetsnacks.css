@@ -1,0 +1,200 @@
+.snacks-container {
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.top-line {
+  border: none;
+  height: 2px;
+  background-color: #d0d0d0;
+  margin-bottom: 10px;
+}
+
+.breadcrumb-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: -19px; /* You might want to adjust this or use padding on the parent */
+  margin-bottom: 20px; /* Added some space below breadcrumbs */
+}
+
+.breadcrumb-left .breadcrumb {
+  /* Combined selector for clarity */
+  font-size: 18px;
+  color: #5a2e0d;
+  white-space: nowrap;
+  margin: 0; /* Removed default margin from h3 */
+}
+
+.breadcrumb .faspecc {
+  /* Make sure 'faspecc' class is defined or remove if not used */
+  font-weight: bold; /* Example style */
+  /* color: #somecolor; */
+}
+
+.breadcrumb-right .buffet-records-link {
+  font-weight: normal; /* Consider if bold is needed based on image */
+  color: #333; /* Or match the 'Records' text color in the image */
+  text-decoration: none;
+  font-size: 18px; /* Adjust as needed */
+  font-weight: bold;
+}
+
+.breadcrumb-right .buffet-records-link:hover {
+  text-decoration: underline;
+}
+
+/* Tabs styling */
+.tabs-bar {
+  margin-bottom: 25px;
+}
+
+.tabs {
+  display: flex;
+  gap: 40px; /* Or use margin on individual tabs */
+  font-size: 20px; /* Base size for tabs */
+  color: #5a2e0d; /* Default tab color */
+}
+
+.tab {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 15px; /* Add some padding to tabs */
+  color: #5a2e0d; /* Ensure this is the default color */
+}
+
+.tab.active {
+  font-weight: bold;
+  color: #000; /* Active tab text color - adjust if needed */
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Position it to align with the bottom border of tabs-bar or slightly overlap */
+  width: 100%;
+  height: 3px;
+  background: #c79a14;
+}
+
+.category-title {
+  font-size: 20px; /* Matched to tab font size for consistency */
+  font-weight: bold;
+  text-align: center; /* As per your existing style */
+  margin: 30px 0 15px;
+  color: #333; /* Example color */
+}
+
+.snack-grid {
+  /* Using snack-grid as per your JSX */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(220px, 1fr)
+  ); /* Responsive columns */
+  gap: 30px;
+  /* justify-items: center; */ /* Usually not needed with grid like this */
+  margin-bottom: 30px;
+  /* max-height: calc(4 * 250px + 90px); */ /* Consider removing or adjusting if it causes issues */
+  /* overflow: auto; */ /* Only if max-height is causing overflow */
+}
+
+.snack-card {
+  /* Using snack-card as per your JSX */
+  border: 1px solid #ccc; /* Lighter border like in the image */
+  /* text-align: center; */ /* Text inside snack-info will be left-aligned */
+  width: 100%; /* Let the grid handle the width */
+  /* height: 250px; */ /* Consider making height auto or min-height to fit content */
+  min-height: 280px; /* Example: give it some minimum height */
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 4px; /* Slightly rounded corners */
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Crucial for positioning icons */
+  padding-bottom: 30px; /* Add padding at the bottom to make space for icons if they are outside info */
+}
+
+.snack-img {
+  /* Using snack-img as per your JSX */
+  width: 100%;
+  height: 150px; /* Or adjust as needed */
+  object-fit: cover;
+  /* border-bottom: 1px solid #5a2e0d; */ /* Removed to match image style */
+  margin-bottom: 10px; /* Space between image and info */
+  border-top-left-radius: 4px; /* Match card radius */
+  border-top-right-radius: 4px; /* Match card radius */
+}
+
+.snack-info {
+  padding: 0 15px 10px; /* Add some horizontal padding */
+  text-align: left; /* Align text to the left */
+  flex-grow: 1; /* Allows this section to grow and push actions to bottom */
+}
+
+.snack-name {
+  font-size: 16px;
+  font-weight: bold; /* Name looks bold in the image */
+  color: #333;
+  margin: 0 0 5px 0; /* Adjust spacing */
+}
+
+.snack-price {
+  font-size: 14px; /* Price font size */
+  color: #555; /* Price color */
+  margin: 0;
+}
+
+.snack-actions {
+  position: absolute; /* Position relative to snack-card */
+  bottom: 10px; /* Distance from the bottom of the card */
+  right: 10px; /* Distance from the right of the card */
+  display: flex;
+  gap: 8px; /* Space between icons */
+}
+
+.action-icon {
+  width: 16px; /* Adjust icon size as needed */
+  height: 16px;
+  cursor: pointer;
+  opacity: 0.7; /* Slight transparency for icons */
+}
+
+.action-icon:hover {
+  opacity: 1;
+}
+
+/* Ensure these classes from your original CSS are still relevant or adjust */
+.breadcrumb .highlight {
+  font-weight: bold;
+  color: #000;
+}
+
+/* These seem to be duplicates or alternatives to .tabs and .tab, review and consolidate */
+.price-tabs {
+  display: flex;
+  gap: 40px;
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #5a2e0d;
+}
+
+.price-tab {
+  cursor: pointer;
+  position: relative;
+}
+
+.price-tab.active {
+  font-weight: bold;
+}
+
+.price-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  background: #c79a14;
+}

@@ -1,0 +1,107 @@
+/* ./Records/RecStyle/ListItems.css */
+
+.listitems-container {
+  width: 100%;
+}
+
+.listitems-title {
+  font-size: 1.4em; /* 22.4px if base is 16px */
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  padding-left: 5px; /* From original AddItems.css */
+}
+
+.listitems-table-wrapper {
+  max-height: 70vh; /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #e0e0e0; /* From original AddItems.css */
+  border-radius: 4px; /* Added for a slightly softer look, optional */
+}
+
+.listitems-table {
+  width: 100%;
+  border-collapse: collapse; /* From original AddItems.css */
+}
+
+.listitems-table th,
+.listitems-table td {
+  padding: 12px 15px; /* From original AddItems.css */
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0; /* From original AddItems.css */
+  vertical-align: middle;
+  font-size: 14px; /* From original AddItems.css */
+  color: #333; /* From original AddItems.css */
+}
+
+.listitems-table tr:last-child td {
+  border-bottom: none; /* From original AddItems.css */
+}
+
+.listitems-table th {
+  background-color: #f8f9fa; /* From original AddItems.css */
+  font-weight: 600;
+  color: #555; /* From original AddItems.css */
+  font-size: 13px; /* From original AddItems.css */
+  white-space: nowrap;
+  border-bottom-width: 1px; /* Explicitly set */
+  border-bottom-color: #d1d1d1; /* Slightly darker for header separation */
+}
+
+.listitems-no-items {
+  text-align: center;
+  color: #777; /* From original AddItems.css */
+  padding: 30px;
+  font-style: italic;
+}
+
+.listitems-table td:nth-child(1) {
+  /* Image column */
+  width: 70px; /* From original AddItems.css */
+}
+
+.listitems-item-image {
+  width: 50px; /* From original AddItems.css */
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px; /* From original AddItems.css */
+  display: block;
+  vertical-align: middle;
+}
+
+.listitems-table th:nth-child(4), /* Price column */
+.listitems-table td:nth-child(4) {
+  text-align: right;
+  width: 100px; /* From original AddItems.css */
+}
+
+.listitems-table th:nth-child(5), /* Action column */
+.listitems-table td:nth-child(5) {
+  text-align: center;
+  width: 80px; /* From original AddItems.css */
+}
+
+.listitems-remove-button {
+  background-color: transparent;
+  color: #dc3545; /* Red for remove action */
+  border: 1px solid #dc3545;
+  padding: 4px 8px; /* Smaller padding for icon button */
+  border-radius: 50%; /* Circular button */
+  cursor: pointer;
+  font-weight: bold; /* Though icon is used, good for accessibility if text was there */
+  font-size: 14px; /* Affects icon size if not overridden by SVG */
+  line-height: 1; /* Helps center icon */
+  transition: all 0.2s ease;
+  display: inline-flex; /* For aligning icon inside */
+  align-items: center;
+  justify-content: center;
+}
+
+.listitems-remove-button:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.listitems-remove-button svg {
+  display: block; /* Ensures SVG fits well */
+}

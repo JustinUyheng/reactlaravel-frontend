@@ -1,0 +1,270 @@
+/* Checkout.css */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #ffffff; /* White background for the page */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.checkout-wrapper {
+  width: 100%;
+  padding: 20px 5%; /* Padding on the sides */
+  box-sizing: border-box;
+  max-width: 1000px; /* Max width of the content area, adjust as needed */
+  margin: 40px auto; /* Centering the content */
+}
+
+.checkout-page-container {
+  display: flex;
+  flex-direction: column; /* Stack rows vertically */
+  gap: 30px; /* Space between the top/bottom rows and the button */
+}
+
+.checkout-row {
+  display: flex;
+  flex-direction: row; /* Columns side-by-side */
+  gap: 30px; /* Space between columns */
+  width: 100%;
+}
+
+.checkout-column {
+  flex: 1; /* Each column takes equal space by default */
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevent overflow issues with flex items */
+}
+
+.section-title {
+  font-size: 1.25rem; /* 20px if base is 16px */
+  font-weight: 600; /* Semibold */
+  margin-bottom: 20px; /* Space below title */
+  color: #2d3748; /* Darker gray for titles */
+}
+
+.form-group {
+  margin-bottom: 18px; /* Space between form fields */
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500; /* Medium */
+  margin-bottom: 6px;
+  color: #4a5568; /* Gray for labels */
+}
+
+/* General styling for all relevant input types in the checkout columns */
+.checkout-column input[type="text"],
+.checkout-column input[type="email"],
+.checkout-column input[type="tel"],
+.checkout-column input[type="date"],
+.checkout-column input[type="time"], /* Ensured time input is included here */
+.checkout-column select {
+  /* Kept select styling in case it's used elsewhere */
+  width: 100%; /* This makes the input take the full width of its parent container */
+  padding: 12px 15px;
+  border: 1px solid #cbd5e0; /* Lighter gray border */
+  border-radius: 8px; /* Rounded corners */
+  box-sizing: border-box;
+  font-size: 1rem; /* 16px */
+  color: #2d3748;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Styling for placeholders */
+.checkout-column input[type="text"]::placeholder,
+.checkout-column input[type="email"]::placeholder,
+.checkout-column input[type="tel"]::placeholder,
+.checkout-column input[type="date"]::placeholder {
+  /* Note: input[type="time"] usually doesn't show a placeholder */
+  color: #a0aec0; /* Lighter gray for placeholder */
+}
+
+/* Focus styles for inputs */
+.checkout-column input[type="text"]:focus,
+.checkout-column input[type="email"]:focus,
+.checkout-column input[type="tel"]:focus,
+.checkout-column input[type="date"]:focus,
+.checkout-column input[type="time"]:focus, /* Ensured time input focus is included */
+.checkout-column select:focus {
+  outline: none;
+  border-color: #f59e0b; /* Orange border on focus, matching buttons */
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2); /* Subtle glow */
+}
+
+/* Specific for date input to show placeholder when type="text" */
+.checkout-column input[type="date"]:not(:focus):placeholder-shown {
+  color: #a0aec0;
+}
+
+/* Reservation column specific layout for date and time containers */
+.reservation-column .pickup-row-inputs {
+  display: flex;
+  gap: 20px; /* Space between date and time input groups */
+}
+
+.reservation-column .pickup-date-group,
+.reservation-column .pickup-time-group {
+  flex: 1; /* Make these containers share space equally, thus same width */
+}
+
+/* Wrapper for select to position custom arrow (if any selects are used) */
+/*
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+*/
+
+/* Styling for select elements (if any are used) */
+/*
+.checkout-column select {
+  appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 35px; 
+}
+*/
+
+/* Custom dropdown arrow (if any selects are used) */
+/*
+.chevron-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none; 
+  fill: #718096; 
+}
+*/
+
+/* Cart Summary Box */
+.cart-summary-box {
+  width: 100%; /* Take full width of its column */
+}
+
+.cart-summary-box p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #4a5568;
+}
+.cart-summary-box p span {
+  font-weight: 600; /* Make the price bold */
+  color: #1a202c;
+}
+
+.cart-summary-box .total-amount {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 700; /* Bold */
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb; /* Separator line */
+  color: #1a202c;
+}
+.cart-summary-box .total-amount span {
+  font-weight: 700;
+}
+
+/* Payment Buttons */
+.payment-buttons {
+  display: flex;
+  gap: 15px; /* Space between Cash and Gcash buttons */
+  margin-top: 5px; /* Align with the visual flow from the title */
+}
+
+.payment-btn {
+  flex: 1; /* Buttons share space equally */
+  padding: 12px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid #fed7aa; /* Light orange border */
+  background-color: #fff7ed; /* Very light orange background */
+  color: #c2410c; /* Dark orange text */
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+.payment-btn:hover {
+  background-color: #ffedd5; /* Slightly darker on hover */
+  border-color: #fb923c;
+}
+
+.payment-btn.active {
+  background-color: #f97316; /* Solid orange for active (Gcash in image) */
+  border-color: #ea580c; /* Darker orange border for active */
+  color: white;
+}
+.payment-btn.gcash-btn.active {
+  /* Gcash active as per image */
+  background-color: #f97316;
+  border-color: #ea580c;
+}
+.payment-btn.cash-btn.active {
+  /* If cash were active */
+  background-color: #f59e0b; /* Slightly different orange for cash if active */
+  border-color: #d97706;
+}
+
+/* Proceed to Payment Button */
+.proceed-button-container {
+  margin-top: 20px; /* Space above the button */
+  text-align: left; /* Aligned to the left as per the image */
+}
+
+.proceed-btn {
+  background-color: #f59e0b; /* Orange color from image */
+  color: white;
+  padding: 14px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none; /* For Link component */
+  display: inline-block; /* To respect padding and allow text-align from container */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.proceed-btn:hover {
+  background-color: #d97706; /* Darker orange on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .checkout-row {
+    flex-direction: column; /* Stack columns vertically on smaller screens */
+  }
+  .reservation-column .pickup-row-inputs {
+    flex-direction: column; /* Stack date and time vertically too */
+    gap: 18px;
+  }
+  .proceed-button-container {
+    text-align: center; /* Center button on small screens */
+  }
+  .proceed-btn {
+    width: 100%; /* Full width button on small screens */
+  }
+}
+```
+The key change in this CSS is ensuring that `input[type="time"]` is included in this rule:
+```css
+.checkout-column input[type="text"],
+.checkout-column input[type="email"],
+.checkout-column input[type="tel"],
+.checkout-column input[type="date"],
+.checkout-column input[type="time"], /* Added this */
+.checkout-column select {
+  width: 100%;
+  /* ... other styles ... */
+}

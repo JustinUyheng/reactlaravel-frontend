@@ -1,0 +1,803 @@
+/* ./Admin/DashStyle/Dashboard.css */
+
+/* Base page and layout styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #f8f9fa; /* Overall page background */
+  color: #333;
+  font-size: 14px; /* Base font size for admin panel */
+}
+
+/* --- Using "additems-" prefix for page layout --- */
+.additems-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.additems-body-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+/* Sidebar Styles */
+.additems-sidebar {
+  width: 260px;
+  background-color: #ffffff;
+  padding: 20px 15px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.additems-sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.additems-sidebar-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 0px;
+  background-color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.sidebar-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
+.additems-sidebar-item:hover {
+  background-color: #f0f0f0;
+  border-color: #b1b1b1;
+  color: #000;
+}
+
+.additems-sidebar-item.active {
+  background-color: #fff9c4;
+  color: #5d4037;
+  border-color: #8b4513;
+  font-weight: bold;
+}
+
+/* Main Content Area Styles */
+.additems-main-content {
+  flex-grow: 1;
+  padding: 25px 30px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+}
+
+/* ----- Dashboard View Specific Styles (if any) ----- */
+.dashboard-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+/* ... (other general dashboard styles if you have them) ... */
+
+/* ----- Styles for PENDING ACCOUNTS Table ----- */
+.accounts-confirmation-container {
+  width: 100%;
+}
+
+.accounts-section-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 8px;
+  text-align: right;
+  padding-right: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.no-accounts-message {
+  text-align: center;
+  color: #777;
+  padding: 40px;
+  font-style: italic;
+  background-color: #ffffff;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.accounts-table-layout {
+  background-color: transparent;
+  border: none;
+  overflow: visible;
+  margin-top: 5px;
+}
+
+.accounts-table-header {
+  display: flex;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 11px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.accounts-table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  background-color: #fffbeb;
+  border-radius: 5px;
+  min-height: 52px;
+}
+
+.header-item,
+.account-cell {
+  padding: 8px 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.header-item {
+  white-space: nowrap;
+  justify-content: flex-start;
+}
+.header-item:first-child {
+  padding-left: 15px;
+}
+
+.account-cell {
+  font-size: 13.5px;
+  color: #333;
+}
+
+/* Column specific styling for PENDING ACCOUNTS */
+.header-item.username-col {
+  flex: 0 0 220px;
+}
+.account-cell.username-col {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding-left: 5px;
+}
+
+.account-user-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.account-cell.username-col span {
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-item.gcash-ref-col {
+  flex: 1 1 280px;
+  min-width: 200px;
+}
+.account-cell.gcash-ref-col {
+  flex: 1 1 280px;
+  min-width: 200px;
+  background-color: #e8e8e8;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-right: 8px;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.header-item.gcash-receipt-col {
+  flex: 1 1 280px;
+  min-width: 200px;
+}
+.account-cell.gcash-receipt-col {
+  flex: 1 1 280px;
+  min-width: 200px;
+  background-color: #e8e8e8;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-right: 8px;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.gcash-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.account-cell.gcash-ref-col span,
+.account-cell.gcash-receipt-col span {
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-item.confirmation-col {
+  flex: 0 0 100px;
+  justify-content: center;
+}
+.account-cell.confirmation-col {
+  flex: 0 0 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.confirmation-icon {
+  width: 22px; /* Base size for icons */
+  height: 22px; /* Base size for icons */
+  cursor: pointer;
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+}
+
+/* Hover for the confirm icon (green check) */
+.confirm-icon:hover {
+  transform: scale(1.2); /* Scales up by 20% on hover */
+  opacity: 0.85;
+}
+
+/*
+  Specific styling for the reject icon (red X)
+  to make it visually similar in size to the green check.
+  The 'transform: scale()' value might need to be adjusted
+  depending on your specific icon asset.
+  Common values to try: 1.1, 1.15, 1.2, 1.25, 1.3
+*/
+.reject-icon {
+  transform: scale(
+    1.2
+  ); /* Starting point: Scales this icon up by 20%. ADJUST AS NEEDED. */
+}
+
+.reject-icon:hover {
+  /*
+    To achieve a similar hover effect (e.g., an additional 20% scale up from its new base size):
+    Current base scale is 1.2. Hover effect is an additional 1.2 factor.
+    So, 1.2 * 1.2 = 1.44
+  */
+  transform: scale(
+    1.44
+  ); /* (1.2 base * 1.2 hover effect factor). ADJUST AS NEEDED. */
+  opacity: 0.85;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 1200px) {
+  .accounts-section-title {
+    padding-right: 5px;
+  }
+  .header-item.username-col,
+  .account-cell.username-col {
+    flex-basis: 200px;
+  }
+  .header-item.gcash-ref-col,
+  .account-cell.gcash-ref-col,
+  .header-item.gcash-receipt-col,
+  .account-cell.gcash-receipt-col {
+    flex-basis: 200px;
+    min-width: 150px;
+  }
+  .header-item.confirmation-col,
+  .account-cell.confirmation-col {
+    flex-basis: 90px;
+    gap: 10px;
+  }
+  .confirmation-icon {
+    width: 20px;
+    height: 20px;
+  }
+  /* The transform: scale() will apply relative to this new base size */
+}
+
+@media (max-width: 992px) {
+  .accounts-table-header {
+    display: none;
+  }
+  .accounts-section-title {
+    text-align: left;
+    padding-left: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  .account-row {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    gap: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .account-cell {
+    width: 100% !important;
+    flex-basis: auto !important;
+    padding: 6px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent !important;
+    margin-right: 0 !important;
+    min-height: 30px;
+  }
+  .account-cell::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+    min-width: 100px;
+    font-size: 12.5px;
+    margin-right: 8px;
+  }
+
+  .account-cell.username-col {
+    justify-content: flex-start;
+    order: 1;
+  }
+  .account-cell.username-col::before {
+    display: none;
+  }
+  .account-user-image {
+    width: 32px;
+    height: 32px;
+  }
+
+  .account-cell.gcash-ref-col,
+  .account-cell.gcash-receipt-col {
+    order: 2;
+    padding: 8px 6px;
+    border-radius: 3px;
+  }
+  .account-cell.gcash-ref-col span,
+  .account-cell.gcash-receipt-col span {
+    margin-left: auto;
+    text-align: right;
+    padding-left: 5px;
+    font-size: 13px;
+  }
+
+  .account-cell.confirmation-col {
+    order: 3;
+    justify-content: flex-end;
+    padding-top: 8px;
+  }
+  .account-cell.confirmation-col::before {
+    content: "Confirm/Reject:";
+  }
+}
+
+@media (max-width: 768px) {
+  .additems-body-container {
+    flex-direction: column;
+  }
+  .additems-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+  }
+  .additems-sidebar nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .additems-sidebar-item {
+    flex-grow: 1;
+    justify-content: center;
+    font-size: 13px;
+    padding: 10px;
+    border-left: none;
+    border-bottom: 1px solid #d1d1d1;
+    border-top: 1px solid #d1d1d1;
+    margin: -1px 0 0 -1px;
+  }
+  .additems-sidebar-item.active {
+    border: 1px solid #8b4513;
+    padding-left: 10px;
+    background-color: #fff9c4;
+    color: #5d4037;
+  }
+  .additems-main-content {
+    padding: 20px 15px;
+  }
+
+  .accounts-section-title {
+    font-size: 13px;
+  }
+  .account-cell::before {
+    min-width: 90px;
+    font-size: 12px;
+  }
+  .account-cell.username-col span {
+    font-size: 13px;
+  }
+  .account-cell.gcash-ref-col span,
+  .account-cell.gcash-receipt-col span {
+    font-size: 12.5px;
+    white-space: normal;
+    word-break: break-all;
+  }
+  .confirmation-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .account-cell.confirmation-col {
+    gap: 8px;
+  }
+}
+
+/* Final adjustments */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ================= EXISTING ACCOUNTS (Verified) ================= */
+.existing-accounts-container {
+  width: 100%;
+}
+
+.existing-accounts-section-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+  text-align: right;
+  padding-right: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.existing-accounts-table-layout {
+  margin-top: 5px;
+}
+
+.existing-accounts-table-header {
+  display: flex;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 11px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.existing-accounts-table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.existing-account-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  background-color: #fff7e5; /* light cream like the mock-up */
+  border-radius: 4px;
+  min-height: 52px;
+}
+
+.header-item.va-username-col,
+.account-cell.va-username-col {
+  flex: 0 0 220px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-item.va-email-col,
+.account-cell.va-email-col {
+  flex: 1 1 280px;
+  min-width: 220px;
+}
+
+.header-item.va-date-applied-col,
+.account-cell.va-date-applied-col {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.header-item.va-action-col,
+.account-cell.va-action-col {
+  flex: 0 0 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: stretch;
+}
+
+/* ---------- Buttons ---------- */
+.btn-va-action {
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.btn-va-verify {
+  background-color: #f7b32b; /* mustard yellow */
+  color: #000;
+}
+
+.btn-va-suspend,
+.btn-va-reinstate,
+.btn-va-approve {
+  background-color: #c9ba9b; /* beige-brown */
+  color: #000;
+}
+
+.btn-va-action:hover {
+  opacity: 0.85;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 992px) {
+  .existing-accounts-table-header {
+    display: none;
+  }
+
+  .existing-account-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .account-cell.va-username-col,
+  .account-cell.va-email-col,
+  .account-cell.va-date-applied-col,
+  .account-cell.va-action-col {
+    width: 100% !important;
+    flex-basis: auto !important;
+    padding: 6px 0;
+  }
+
+  .account-cell.va-date-applied-col {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .account-cell::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+  }
+
+  .account-cell.va-username-col::before {
+    display: none;
+  }
+
+  .account-cell.va-action-col {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+/* ========================================================================== */
+/* STYLES FOR DASHBOARD STATS VIEW (Dashboard.jsx / DashboardStatsView)       */
+/* Based on image_2b1496.png                                                  */
+/* ========================================================================== */
+
+.dashboard-view-container {
+  /* Overall container for the stats sections */
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between "Today", "This Week", "This Month" sections */
+}
+
+.dashboard-section {
+  /* Container for each time period (e.g., "Today") */
+  /* No specific background or border needed for the section itself based on the image */
+}
+
+.dashboard-section-title {
+  /* "Today", "This Week", "This Month" titles */
+  font-size: 16px; /* Adjusted from image, looks like a plain sans-serif */
+  font-weight: 500; /* Medium weight */
+  color: #333333; /* Dark grey / black */
+  margin-bottom: 15px; /* Space below the title before the cards */
+  padding-bottom: 0; /* No border/padding bottom for this title style */
+  border-bottom: none; /* No border for this title style */
+}
+
+.dashboard-cards-container {
+  /* Grid container for the three cards in a row */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(240px, 1fr)
+  ); /* Responsive cards, 3 per row if space */
+  gap: 20px; /* Space between cards */
+}
+
+.dashboard-card {
+  /* Individual stat card (Orders, Customers, Revenue) */
+  background-color: #ffffff; /* White background */
+  border: 1px solid #d1d1d1; /* Simple grey border as in image */
+  border-radius: 4px; /* Slightly rounded corners */
+  padding: 20px; /* Internal padding */
+  display: flex;
+  align-items: center; /* Vertically align icon and text block */
+  gap: 18px; /* Space between icon and text block */
+  box-shadow: none; /* No box-shadow in the new image */
+  transition: border-color 0.2s ease; /* Simple hover effect */
+}
+
+.dashboard-card:hover {
+  border-color: #a0a0a0; /* Darker border on hover */
+  transform: none; /* No translateY in the new image */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Optional: subtle shadow on hover */
+}
+
+.dashboard-card-icon {
+  /* Icon within the card */
+  width: 48px; /* Adjusted size from image */
+  height: 48px; /* Adjusted size from image */
+  object-fit: contain; /* Ensure icon scales nicely */
+  padding: 0; /* No extra padding around the icon itself if the asset has appropriate spacing */
+  border-radius: 0; /* No circular background/radius for the icon itself */
+  background-color: transparent; /* No background color for the icon container */
+  flex-shrink: 0; /* Prevent icon from shrinking if text is long */
+}
+/* Remove nth-child specific background colors for icons if they were present for this section */
+.dashboard-card:nth-child(1) .dashboard-card-icon,
+.dashboard-card:nth-child(2) .dashboard-card-icon,
+.dashboard-card:nth-child(3) .dashboard-card-icon {
+  background-color: transparent; /* Ensure no specific background */
+}
+
+.dashboard-card-info {
+  /* Container for the value and label text */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  gap: 4px; /* Small space between value and label */
+}
+
+.dashboard-card-value {
+  /* The number/statistic (e.g., "10", "₱1,250") */
+  font-size: 24px; /* Large font size for the value */
+  font-weight: 600; /* Boldish */
+  color: #212529; /* Dark text */
+  line-height: 1.2;
+}
+
+.dashboard-card-label {
+  /* The description (e.g., "Orders Today") */
+  font-size: 14px; /* Standard font size for the label */
+  color: #555555; /* Medium grey text */
+  line-height: 1.4;
+}
+
+/* --- Responsive Adjustments for Dashboard Stats Cards --- */
+@media (max-width: 1200px) {
+  .dashboard-cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  .dashboard-card {
+    padding: 15px;
+    gap: 12px;
+  }
+  .dashboard-card-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .dashboard-card-value {
+    font-size: 22px;
+  }
+  .dashboard-card-label {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-section-title {
+    font-size: 15px; /* Slightly smaller title for mobile */
+    margin-bottom: 10px;
+  }
+  .dashboard-cards-container {
+    /* On smaller screens, you might want them to stack or go to 2 columns */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  /* If you want cards to stack fully on very small screens: */
+  /*
+  .dashboard-cards-container {
+    grid-template-columns: 1fr;
+  }
+  */
+  .dashboard-card {
+    padding: 12px;
+    flex-direction: row; /* Keep icon and text side-by-side */
+    align-items: center;
+  }
+  .dashboard-card-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .dashboard-card-value {
+    font-size: 20px;
+  }
+  .dashboard-card-label {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-cards-container {
+    grid-template-columns: 1fr; /* Stack cards on very small screens */
+  }
+  .dashboard-card {
+    gap: 15px; /* Adjust gap if needed when stacked */
+  }
+}
+
+/* Final adjustments (should be at the very end of your CSS file) */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

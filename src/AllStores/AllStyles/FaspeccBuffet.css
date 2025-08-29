@@ -1,0 +1,357 @@
+/* ./AllStyles/FaspeccBuffet.css */
+
+/* Outer wrapper for full-width elements */
+.buffetss-page-wrapper {
+  /* Was: .buffet-container-wrapper */
+  width: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.buffetss-top-line {
+  /* Was: .buffet-top-line-full - Retaining name for clarity if used */
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: content-box;
+}
+
+.buffetss-content-area {
+  /* Was: .buffet-content-main */
+  width: 100%; /* Original */
+  /* max-width: 1200px; */ /* Removed my addition to keep it original */
+  margin: 0 auto;
+  padding: 15px 10px 20px 10px; /* Original */
+  box-sizing: border-box;
+}
+
+/* Breadcrumb styling - Assuming .breadcrumb is a global or reusable class */
+/* If .buffet-breadcrumb-title was specific, its direct children styles apply to .breadcrumb's children */
+.breadcrumb {
+  /* This class is directly on h3 in JSX */
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: normal;
+  color: #333;
+  margin: 0 0 20px 0; /* Adjusted from original .buffet-tabs-actions-bar margin for breadcrumb */
+  /* Original .buffet-breadcrumb-title had margin-right: 25px, which doesn't directly apply here */
+  /* If you had specific styles for .buffet-breadcrumb-title, they need careful mapping */
+}
+
+.buffetss-brand-name {
+  /* Mapped from .buffet-breadcrumb-title .breadcrumb-line-1 */
+  font-weight: bold;
+  color: #d9a214; /* FASPeCC color from original */
+}
+
+/* Style for the "> Buffet" part if it was .breadcrumb-line-2 */
+/* .breadcrumb > *:not(.buffetss-brand-name) { */
+/* color: #c79a14; */ /* From original .breadcrumb-line-2, if applicable */
+/* } */
+
+.buffetss-controls-bar {
+  /* Was: .buffet-tabs-actions-bar */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee; /* Original */
+  padding-bottom: 10px; /* Original */
+}
+
+.buffetss-price-tabs {
+  /* Was: .buffet-price-selector-tabs */
+  display: flex;
+  gap: 25px;
+}
+
+.buffetss-price-tab {
+  /* Was: .buffet-price-selector-tab */
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  padding: 5px 0; /* Original */
+  position: relative;
+  border-bottom: 3px solid transparent; /* Original */
+  /* transition: color 0.3s ease, border-bottom-color 0.3s ease; */ /* My addition, removed */
+}
+
+.buffetss-price-tab.active {
+  /* Was: .buffet-price-selector-tab.active */
+  color: #000000; /* Original */
+  border-bottom: 3px solid #e3b041; /* Original */
+}
+
+/* No specific :hover for inactive tabs in original, so removed my addition */
+
+.buffetss-action-icons {
+  /* Was: .buffet-page-action-icons */
+  display: flex;
+  gap: 18px;
+}
+
+.buffetss-action-icons img {
+  /* Was: .buffet-page-action-icons img */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.buffetss-action-icons img:hover {
+  /* Was: .buffet-page-action-icons img:hover */
+  opacity: 1;
+}
+
+/* Buffet Option Cards */
+.buffetss-options-grid {
+  /* Was: .buffet-options-display-grid */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Original */
+  gap: 20px; /* Original */
+  margin-bottom: 30px; /* Original */
+}
+
+.buffetss-option-card {
+  /* Was: .buffet-set-card */
+  border: 1px solid #ddd; /* Original */
+  background-color: #fff; /* Original */
+  display: flex; /* Original */
+  overflow: hidden; /* Original */
+  /* border-radius: 8px; */ /* My addition, removed */
+  /* box-shadow: 0 4px 8px rgba(0,0,0,0.08); */ /* My addition, removed */
+  /* transition: box-shadow 0.3s ease; */ /* My addition, removed */
+}
+/* No card hover shadow in original */
+
+/* No @media for card flex-direction change in original */
+
+.buffetss-option-card-images {
+  /* Was: .buffet-set-images */
+  flex: 0 0 45%; /* Original */
+  /* width: 100%; */ /* My addition, removed */
+  /* aspect-ratio: 1 / 1; */ /* My addition, removed */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  /* overflow: hidden; */ /* My addition, removed unless original had it for image grid */
+}
+
+/* No @media for image width/aspect-ratio change in original */
+
+.buffetss-option-card-images img {
+  /* Was: .buffet-set-images img */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* transition: transform 0.3s ease; */ /* My addition, removed */
+}
+/* No image hover zoom in original */
+
+.buffetss-option-card-details {
+  /* Was: .buffet-set-details */
+  padding: 15px 15px; /* Original */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.buffetss-option-card-title {
+  /* Was: .buffet-set-title */
+  font-weight: bold;
+  font-size: 14px; /* Original */
+  color: #000; /* Original */
+  margin-top: 0;
+  margin-bottom: 8px; /* Original */
+}
+
+.buffetss-option-card-menu-item {
+  /* Was: .buffet-menu-item-text */
+  font-size: 12px; /* Original */
+  color: #333; /* Original */
+  margin: 2px 0; /* Original */
+  line-height: 1.4; /* Original */
+}
+
+.buffetss-option-card-actions {
+  /* Was: .buffet-button-row */
+  display: flex;
+  gap: 8px; /* Original */
+  margin-top: auto;
+  padding-top: 10px; /* Original */
+  justify-content: flex-end;
+}
+
+.buffetss-option-card-actions button {
+  /* Was: .buffet-button-row button */
+  padding: 4px 10px; /* Original */
+  font-size: 10px; /* Original */
+  background-color: #f4cd95; /* Original */
+  color: #ffffff; /* Original */
+  border: none; /* Original */
+  border-radius: 2px; /* Original */
+  cursor: pointer; /* Original */
+  font-weight: bold; /* Original */
+  text-transform: none; /* CHANGED */
+  letter-spacing: normal; /* CHANGED (was 0.5px) */
+  transition: background-color 0.2s ease; /* Original */
+}
+
+.buffetss-option-card-actions button:hover {
+  /* Was: .buffet-button-row button:hover */
+  background-color: #e0a800; /* Original */
+  /* transform: translateY(-1px); */ /* My addition, removed */
+}
+/* No :active transform in original */
+
+/* Drinks Section Styling */
+.buffetss-drinks-title {
+  /* Was: .buffet-drinks-section-title */
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px; /* Original */
+  color: #000000; /* Original */
+  margin-top: 30px; /* Original */
+  margin-bottom: 20px; /* Original */
+  text-transform: uppercase; /* Original */
+  /* border-top: 1px solid #eee; */ /* My addition, removed */
+  /* padding-top: 20px; */ /* My addition, removed */
+}
+
+.buffetss-drinks-grid {
+  /* Was: .buffet-drinks-display-grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Original */
+  gap: 15px; /* Original */
+  margin-bottom: 20px; /* Original */
+}
+
+.buffetss-drink-card {
+  /* Was: .buffet-drink-item-card */
+  border: 1px solid #ddd; /* Original */
+  background-color: #fff; /* Original */
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10px; /* Original */
+  /* border-radius: 8px; */ /* My addition, removed */
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.06); */ /* My addition, removed */
+  /* transition: box-shadow 0.3s ease, transform 0.3s ease; */ /* My addition, removed */
+}
+/* No drink card hover effects in original */
+
+.buffetss-drink-card-img {
+  /* Was: .buffet-drink-item-card-img */
+  width: 100%;
+  height: 120px; /* Original */
+  object-fit: cover;
+}
+
+.buffetss-drink-card-info {
+  /* Was: .buffet-drink-item-card-info */
+  padding: 10px 5px 5px 5px; /* Original */
+  /* flex-grow: 1; */ /* My addition, removed */
+}
+
+.buffetss-drink-card-name {
+  /* Was: .buffet-drink-item-card-name */
+  font-size: 13px; /* Original */
+  font-weight: bold;
+  color: #000; /* Original */
+  margin-bottom: 3px; /* Original */
+}
+
+.buffetss-drink-card-price {
+  /* Was: .buffet-drink-item-card-price */
+  font-size: 12px; /* Original */
+  color: #555; /* Original */
+  /* font-weight: bold; */ /* My addition, removed */
+  margin-bottom: 8px; /* Original */
+}
+
+.buffetss-drink-card-actions {
+  /* Was: .buffet-drink-button-row */
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Original */
+  padding: 0 10px; /* Original */
+}
+
+.buffetss-drink-card-actions button {
+  /* Was: .buffet-drink-button-row button */
+  padding: 4px 10px; /* Original */
+  font-size: 10px; /* Original */
+  background-color: #f4cd95; /* Original */
+  color: #ffffff; /* Original */
+  border: none; /* Original */
+  border-radius: 2px; /* Original */
+  cursor: pointer; /* Original */
+  font-weight: bold; /* Original */
+  text-transform: none; /* CHANGED */
+  letter-spacing: normal; /* CHANGED (was 0.5px) */
+  transition: background-color 0.2s ease; /* Original */
+  /* flex-grow: 1; */ /* My addition, removed */
+  /* max-width: 100px; */ /* My addition, removed */
+}
+/* No differentiated colors for Reserve/Order in original drink buttons */
+
+.buffetss-drink-card-actions button:hover {
+  /* Was: .buffet-drink-button-row button:hover */
+  background-color: #e0a800; /* Original */
+  /* opacity: 0.85; */ /* My addition, removed */
+  /* transform: translateY(-1px); */ /* My addition, removed */
+}
+/* No :active transform in original */
+
+/* Responsive Adjustments - Sticking to what was derivable from original or common practice if not specified */
+@media (max-width: 768px) {
+  .buffetss-content-area {
+    /* padding: 15px 10px 20px 10px; */ /* Already defined in base */
+  }
+  .buffetss-controls-bar {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch; /* Common for stacking */
+  }
+  .buffetss-price-tabs {
+    justify-content: center; /* Common for stacking */
+  }
+  .buffetss-options-grid {
+    grid-template-columns: 1fr; /* Common for stacking */
+  }
+  .buffetss-option-card-images {
+    /* Assuming this behavior was desired from image context */
+    /* max-height: 250px; */ /* My interpretation, original had no specific override */
+  }
+  .buffetss-drinks-grid {
+    /* grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); */ /* My interpretation, original had 180px */
+  }
+  .buffetss-drink-card-img {
+    /* height: 110px; */ /* My interpretation, original had no specific override */
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb {
+    font-size: 14px; /* Common adjustment */
+  }
+  .buffetss-price-tab {
+    font-size: 14px; /* Common adjustment */
+  }
+  .buffetss-action-icons img {
+    width: 22px; /* Common adjustment */
+    height: 22px; /* Common adjustment */
+  }
+  /* Original CSS did not have further specific overrides at 480px for many elements */
+}

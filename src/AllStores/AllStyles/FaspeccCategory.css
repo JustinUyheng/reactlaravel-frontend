@@ -1,0 +1,140 @@
+/* faspeccstyle/FaspeccCategory.css */
+
+.faspecc-category-page-container {
+  /* Was: .store1-page-container */
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.faspecc-category-top-line {
+  /* Was: .store1-top-line */
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0 0 20px 0;
+}
+
+.breadcrumb {
+  /* Was: .store1-breadcrumb (applied directly to h3 in new JSX) */
+  text-align: left;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.faspecc-brand-name {
+  /* Was: .store1-breadcrumb-brand */
+  color: #c1272d;
+  font-weight: bold;
+}
+
+/* Category Grid Styling */
+.faspecc-category-grid {
+  /* Was: .store1-category-grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 10px 0;
+}
+
+.faspecc-category-card {
+  /* Was: .store1-category-card */
+  position: relative;
+  display: block; /* Ensured block for <a> tag */
+  height: 200px;
+  text-decoration: none;
+  color: inherit;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+
+.faspecc-category-card:hover {
+  /* Was: .store1-category-card:hover */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.faspecc-category-img {
+  /* Was: .store1-category-img */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* MODIFIED LABEL STYLES - Kept original logic for positioning and appearance */
+.faspecc-category-label {
+  /* Was: .store1-category-label */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  background-color: rgba(106, 74, 59, 0.85);
+  color: white;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 0; /* As per original */
+  box-sizing: border-box;
+  transition: background-color 0.2s ease; /* As per original */
+}
+
+/* If you want a hover effect on the label from the original, you'd add:
+.faspecc-category-card:hover .faspecc-category-label {
+  background-color: rgba(106, 74, 59, 1); // Or any other hover color
+}
+*/
+
+.faspecc-category-caption {
+  /* Was: .store1-caption */
+  margin-top: 50px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.faspecc-category-caption h2 {
+  /* Was: .store1-caption h2 */
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+  /* align: center; was correctly removed as it's not a valid CSS property here */
+}
+
+.faspecc-category-caption p {
+  /* Was: .store1-caption p */
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  color: #555;
+}
+
+/* Optional: Basic responsive adjustments similar to what might have been implied or good practice */
+@media (max-width: 768px) {
+  .faspecc-category-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .faspecc-category-card {
+    height: 180px; /* Adjust if needed */
+  }
+}
+
+@media (max-width: 480px) {
+  .faspecc-category-grid {
+    grid-template-columns: 1fr; /* Single column */
+  }
+  .faspecc-category-card {
+    height: 160px; /* Adjust if needed */
+  }
+  .breadcrumb {
+    font-size: 14px;
+  }
+}

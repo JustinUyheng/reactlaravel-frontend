@@ -1,0 +1,304 @@
+/* ./FranceBuffets.css */
+
+.fb-buffet-page-wrapper {
+  /* New ClassName */
+  width: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.fb-buffet-top-line {
+  /* New ClassName (unused in JSX, kept from original CSS structure) */
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: content-box;
+}
+
+.fb-buffet-content-area {
+  /* New ClassName */
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 10px 20px 10px;
+  box-sizing: border-box;
+}
+
+.fb-buffet-breadcrumb {
+  /* New ClassName */
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: normal;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.fb-buffet-brand-name {
+  /* New ClassName */
+  font-weight: bold;
+  color: #d9a214; /* Original FASPeCC color */
+}
+
+.fb-buffet-controls-bar {
+  /* New ClassName */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.fb-buffet-price-tabs {
+  /* New ClassName */
+  display: flex;
+  gap: 25px;
+}
+
+.fb-buffet-price-tab {
+  /* New ClassName */
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  padding: 5px 0;
+  position: relative;
+  border-bottom: 3px solid transparent;
+}
+
+.fb-buffet-price-tab.active {
+  /* New ClassName */
+  color: #000000;
+  border-bottom: 3px solid #e3b041;
+}
+
+.fb-buffet-action-icons {
+  /* New ClassName */
+  display: flex;
+  gap: 18px;
+}
+
+.fb-buffet-action-icons img {
+  /* New ClassName */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.fb-buffet-action-icons img:hover {
+  /* New ClassName */
+  opacity: 1;
+}
+
+.fb-buffet-options-grid {
+  /* New ClassName */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.fb-buffet-option-card {
+  /* New ClassName */
+  border: 1px solid #ddd;
+  background-color: #fff;
+  display: flex;
+  overflow: hidden;
+}
+
+.fb-buffet-option-card-images {
+  /* New ClassName */
+  flex: 0 0 45%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.fb-buffet-option-card-images img {
+  /* New ClassName */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fb-buffet-option-card-details {
+  /* New ClassName */
+  padding: 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.fb-buffet-option-card-title {
+  /* New ClassName */
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.fb-buffet-option-card-menu-item {
+  /* New ClassName */
+  font-size: 12px;
+  color: #333;
+  margin: 2px 0;
+  line-height: 1.4;
+}
+
+.fb-buffet-option-card-actions {
+  /* New ClassName */
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  justify-content: flex-end;
+}
+
+.fb-buffet-option-card-actions button {
+  /* New ClassName */
+  padding: 4px 10px;
+  font-size: 10px;
+  background-color: #f4cd95;
+  color: #ffffff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: normal;
+  transition: background-color 0.2s ease;
+}
+
+.fb-buffet-option-card-actions button:hover {
+  /* New ClassName */
+  background-color: #e0a800;
+}
+
+.fb-buffet-drinks-title {
+  /* New ClassName */
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #000000;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.fb-buffet-drinks-grid {
+  /* New ClassName */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.fb-buffet-drink-card {
+  /* New ClassName */
+  border: 1px solid #ddd;
+  background-color: #fff;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.fb-buffet-drink-card-img {
+  /* New ClassName */
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.fb-buffet-drink-card-info {
+  /* New ClassName */
+  padding: 10px 5px 5px 5px;
+}
+
+.fb-buffet-drink-card-name {
+  /* New ClassName */
+  font-size: 13px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 3px;
+}
+
+.fb-buffet-drink-card-price {
+  /* New ClassName */
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.fb-buffet-drink-card-actions {
+  /* New ClassName */
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 10px;
+}
+
+.fb-buffet-drink-card-actions button {
+  /* New ClassName */
+  padding: 4px 10px;
+  font-size: 10px;
+  background-color: #f4cd95;
+  color: #ffffff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: normal;
+  transition: background-color 0.2s ease;
+}
+
+.fb-buffet-drink-card-actions button:hover {
+  /* New ClassName */
+  background-color: #e0a800;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .fb-buffet-controls-bar {
+    /* New ClassName */
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  .fb-buffet-price-tabs {
+    /* New ClassName */
+    justify-content: center;
+  }
+  .fb-buffet-options-grid {
+    /* New ClassName */
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .fb-buffet-breadcrumb {
+    /* New ClassName */
+    font-size: 14px;
+  }
+  .fb-buffet-price-tab {
+    /* New ClassName */
+    font-size: 14px;
+  }
+  .fb-buffet-action-icons img {
+    /* New ClassName */
+    width: 22px;
+    height: 22px;
+  }
+}

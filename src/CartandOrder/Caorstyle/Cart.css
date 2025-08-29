@@ -1,0 +1,98 @@
+.cart-container {
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  margin: 2rem;
+}
+
+.cart-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cart-tables {
+  flex: 2;
+  min-width: 300px;
+}
+
+.cart-totals {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  margin-top: 30px;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.cart-totals p,
+.cart-totals h3 {
+  margin: 4px 0;
+  color: #444;
+}
+
+.checkout-btn {
+  margin-top: 15px;
+  background-color: orange;
+  color: white;
+  padding: 2px 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Style for quantity buttons */
+table button {
+  padding: 5px 10px;
+  font-size: 16px;
+
+  border: none;
+  color: #000;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+table button:hover {
+  background-color: #e0a800;
+}
+
+td {
+  vertical-align: middle;
+}
+
+table td button:last-child {
+  margin-left: 10px;
+}

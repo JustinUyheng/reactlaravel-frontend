@@ -1,0 +1,213 @@
+/* ./Records/RecStyle/Orderss.css */
+
+.admin-orders-container {
+  width: 100%;
+}
+
+.admin-orders-title {
+  font-size: 1.4em; /* Approx 22.4px */
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px; /* From original AddItems.css */
+}
+
+.admin-orders-no-orders {
+  text-align: center;
+  color: #777; /* From original AddItems.css */
+  padding: 40px;
+  font-style: italic;
+  background-color: #f8f9fa; /* From original AddItems.css */
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+}
+
+.admin-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* From original AddItems.css */
+}
+
+.admin-order-card {
+  display: flex;
+  align-items: flex-start; /* Align to top */
+  gap: 20px; /* From original AddItems.css */
+  padding: 20px; /* From original AddItems.css */
+  border: 1px solid #dee2e6; /* From original AddItems.css */
+  border-radius: 0px; /* As per original style */
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Optional: subtle shadow */
+}
+
+.admin-order-icon {
+  flex-shrink: 0;
+  padding-top: 2px; /* From original AddItems.css */
+}
+
+.admin-order-icon img {
+  width: 35px; /* From original AddItems.css */
+  height: 35px;
+  object-fit: contain;
+}
+
+.admin-order-main-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* From original AddItems.css */
+}
+
+.admin-order-items {
+  font-weight: 600;
+  color: #212529; /* From original AddItems.css */
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.admin-order-customer {
+  font-size: 13px;
+  color: #6c757d; /* From original AddItems.css */
+  line-height: 1.5;
+}
+
+.admin-order-customer p {
+  margin: 0 0 2px 0; /* From original AddItems.css */
+}
+
+.customer-name {
+  font-weight: 500;
+  color: #495057; /* From original AddItems.css */
+}
+
+.admin-order-summary {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px; /* From original AddItems.css */
+  font-size: 14px;
+  min-width: 90px; /* From original AddItems.css */
+  text-align: right;
+  padding-top: 2px; /* From original AddItems.css */
+}
+
+.admin-order-item-count {
+  color: #6c757d; /* From original AddItems.css */
+  margin: 0;
+  font-size: 13px;
+}
+
+.admin-order-total-price {
+  font-weight: 600;
+  color: #212529; /* From original AddItems.css */
+  margin: 0;
+}
+
+.admin-order-status {
+  flex-shrink: 0;
+  min-width: 170px; /* From original AddItems.css */
+}
+
+.status-select {
+  width: 100%;
+  padding: 8px 28px 8px 12px; /* Adjusted for arrow */
+  border: 1px solid #ced4da; /* From original AddItems.css */
+  border-radius: 4px; /* From original AddItems.css */
+  background-color: #f8f9fa; /* From original AddItems.css */
+  font-size: 13px;
+  font-weight: 500;
+  color: #495057; /* Default text color */
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Custom arrow from original AddItems.css, slightly adjusted for clarity */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="%236c757d" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 10px; /* Size of the arrow icon */
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: #8b4513; /* From original AddItems.css */
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25); /* From original AddItems.css */
+}
+
+/* Status Dropdown Background Colors - from original AddItems.css */
+.status-select.status-food-processing {
+  background-color: #fff9c4;
+  border-color: #8b4513;
+  color: #5d4037;
+}
+
+.status-select.status-ready-for-pickup {
+  /* Updated for better distinction, you can revert to original if preferred */
+  background-color: #d1e7dd; /* Light Green */
+  border-color: #a3cfbb;
+  color: #0f5132; /* Dark Green */
+}
+
+.status-select.status-item-picked-up {
+  /* Updated for better distinction */
+  background-color: #cfe2ff; /* Light Blue */
+  border-color: #b6d4fe;
+  color: #084298; /* Dark Blue */
+}
+
+/* Responsive Media Queries (copied from original AddItems.css, may need review if layout issues arise) */
+@media (max-width: 992px) {
+  .admin-order-card {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .admin-order-main-details {
+    width: 100%;
+    order: 1;
+  }
+  .admin-order-summary {
+    order: 2;
+    width: calc(50% - 10px); /* Two items per row */
+    align-items: flex-start;
+    text-align: left;
+    min-width: unset;
+    padding-top: 0;
+  }
+  .admin-order-status {
+    order: 3;
+    width: calc(50% - 10px);
+    min-width: unset;
+  }
+  .admin-order-icon {
+    order: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-order-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .admin-order-icon {
+    /* display: none; */ /* Kept visible as per image, but you can hide if needed */
+    align-self: center; /* Center icon if card is column */
+    margin-bottom: 10px;
+  }
+  .admin-order-main-details,
+  .admin-order-summary,
+  .admin-order-status {
+    width: 100%;
+    order: unset;
+  }
+  .admin-order-summary {
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row; /* Items count and total price in a row */
+    justify-content: space-between;
+    border-top: 1px dashed #eee;
+    padding-top: 10px;
+    margin-top: 10px; /* Add margin if icon is present */
+  }
+}

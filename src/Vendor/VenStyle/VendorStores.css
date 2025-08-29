@@ -1,0 +1,89 @@
+/* Store.css */
+.stores-container {
+  padding: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.stores-divider {
+  border: none;
+  height: 2px;
+  background-color: #d9a214;
+  margin-bottom: 20px;
+  margin-top: -30px;
+}
+
+.breadcrumb {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.stores-tabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 40px; /* This will override the margin-bottom: 20px above it */
+}
+
+.tab {
+  cursor: pointer;
+  position: relative;
+  color: black;
+  top: 13px;
+}
+
+.tab.active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #d9a214;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.store-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.store-card:hover {
+  transform: scale(1.03);
+}
+
+.store-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.store-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(111, 62, 29, 0.8);
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 250px;
+  border-radius: 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
