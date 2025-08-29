@@ -122,7 +122,7 @@ const AppContent = () => {
 					<Route path="/contact-us" element={<Contact />} />
 					<Route path="/faq" element={<Frequently />} />
 					<Route path="/feedback" element={<Feedback />} />
-					<Route path="/get-started" element={<Getstarted />} />
+					<Route path="/get-started" element={<GetStarted />} />
 					<Route path="/auth" element={<Login />} />
 					<Route path="/" element={<HomeBody />} />
 					<Route path="/homepage" element={<HomeBody />} />
