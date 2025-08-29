@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/Getstarted.css";
+import "./style/GetStarted.css";
 import { Link } from "react-router-dom"; // Import Link
 
 const GetStarted = () => {
