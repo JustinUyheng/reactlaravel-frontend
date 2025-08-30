@@ -1,46 +1,46 @@
 .stores-container {
-  padding: 50px;
-  font-family: Arial, sans-serif;
+	padding: 50px;
+	font-family: Arial, sans-serif;
 }
 
 /* This class is defined but not used in the Store.jsx markup you provided.
    If it's used elsewhere and intended as a general page divider, it's fine.
    It's not directly causing the tab underline issue based on your JSX. */
 .stores-divider {
-  border: none;
-  height: 2px;
-  background-color: #d9a214;
-  margin-bottom: 20px;
-  margin-top: -30px;
+	border: none;
+	height: 2px;
+	background-color: #d9a214;
+	margin-bottom: 20px;
+	margin-top: -30px;
 }
 
 .breadcrumb {
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: #333;
+	font-size: 20px;
+	margin-bottom: 15px;
+	color: #333;
 }
 
 .stores-tabs {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 40px; /* Provides space below the tabs section */
-  font-size: 18px;
-  font-weight: bold;
-  /* border-bottom: 1px solid #eee; /* Optional: a very light full-width line for the tabs container */
+	display: flex;
+	gap: 20px;
+	margin-bottom: 40px; /* Provides space below the tabs section */
+	font-size: 18px;
+	font-weight: bold;
+	/* border-bottom: 1px solid #eee; /* Optional: a very light full-width line for the tabs container */
 }
 
 .tab {
-  cursor: pointer;
-  position: relative; /* Crucial for positioning the ::after pseudo-element */
-  color: black; /* Default text color for tabs */
-  padding-bottom: 8px; /* Creates space below the text for the underline.
+	cursor: pointer;
+	position: relative; /* Crucial for positioning the ::after pseudo-element */
+	color: black; /* Default text color for tabs */
+	padding-bottom: 8px; /* Creates space below the text for the underline.
                            Adjust this value to control the distance of the line from the text.
                            (e.g., 5px desired space + 3px line height = 8px padding-bottom) */
-  text-decoration: none !important; /* IMPORTANT: Ensures no default browser underline appears. */
-  border-bottom: 3px solid transparent; /* OPTIONAL: Reserves space for the underline to prevent layout shift.
+	text-decoration: none !important; /* IMPORTANT: Ensures no default browser underline appears. */
+	border-bottom: 3px solid transparent; /* OPTIONAL: Reserves space for the underline to prevent layout shift.
                                             The active underline will paint over this transparent space.
                                             If you don't want this, remove it and adjust padding-bottom if needed. */
-  /* Removed problematic/unnecessary positioning properties:
+	/* Removed problematic/unnecessary positioning properties:
   top: 13px;
   bottom: 50px;
   */
@@ -48,60 +48,108 @@
 
 /* Optional: Style for the text of the active tab, if you want it different (e.g., also yellow) */
 .tab.active {
-  /* color: #d9a214; */ /* Example: Make active tab text also yellow */
-  /* The underline is handled by ::after, so no border-bottom or text-decoration here */
+	/* color: #d9a214; */ /* Example: Make active tab text also yellow */
+	/* The underline is handled by ::after, so no border-bottom or text-decoration here */
 }
 
 .tab.active::after {
-  content: ""; /* Necessary for pseudo-elements to show */
-  display: block;
-  width: 100%; /* Makes the line span the full width of the tab text */
-  height: 3px; /* Sets the thickness of the yellow line */
-  background-color: #d9a214; /* The yellow color for your line */
-  position: absolute;
-  bottom: 0; /* Positions the line at the very bottom of the .tab element (within its padding) */
-  left: 0; /* Aligns the line to the left edge of the tab */
+	content: ""; /* Necessary for pseudo-elements to show */
+	display: block;
+	width: 100%; /* Makes the line span the full width of the tab text */
+	height: 3px; /* Sets the thickness of the yellow line */
+	background-color: #d9a214; /* The yellow color for your line */
+	position: absolute;
+	bottom: 0; /* Positions the line at the very bottom of the .tab element (within its padding) */
+	left: 0; /* Aligns the line to the left edge of the tab */
 }
 
 .store-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 50px;
 }
 
 .store-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
+	position: relative;
+	border-radius: 20px;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+	transition: transform 0.2s;
 }
 
 .store-card:hover {
-  transform: scale(1.03);
+	transform: scale(1.03);
 }
 
 .store-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	display: block;
 }
 
 .store-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(111, 62, 29, 0.8);
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 10px 250px; /* This padding seems very large horizontally, ensure it's intended */
-  border-radius: 10px;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(111, 62, 29, 0.8);
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 10px 250px; /* This padding seems very large horizontally, ensure it's intended */
+	border-radius: 10px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.store-info {
+	padding: 10px;
+	text-align: center;
+}
+
+.store-title {
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+.store-type {
+	font-size: 12px;
+	color: #666;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.store-description {
+	font-size: 12px;
+	color: #888;
+	line-height: 1.3;
+}
+
+.store-card {
+	cursor: pointer;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+	border-radius: 8px;
+	overflow: hidden;
+	background: white;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.store-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.store-image {
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
 }

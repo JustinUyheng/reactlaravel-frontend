@@ -53,6 +53,12 @@ const Stores = () => {
 		}
 	};
 
+	const handleStoreClick = (store) => {
+		// Navigate to store-specific page based on store ID
+		// For now, we'll use a generic route, but you can make this dynamic
+		navigate(`/store/${store.id}/products`);
+	};
+
 	if (loading) {
 		return (
 			<div className="stores-container" id="stores">
@@ -85,22 +91,45 @@ const Stores = () => {
 
 			<div className="store-grid">
 				{filteredStores.length === 0 ? (
-					<div style={{ padding: 20 }}>No stores found.</div>
+					<div style={{ padding: 20 }}>
+						<p>No stores found.</p>
+						<p>Vendors need to create stores first.</p>
+					</div>
 				) : (
 					filteredStores.map((store) => {
-						const title = store.business_name || "Store";
-						const img = assets.food_1; // placeholder image until you add images per store
-						// Choose route based on business_name until you have dynamic store detail pages
-						const route = "/france-bistro-stores";
+						const title = store.business_name || "Unnamed Store";
+						const businessType = store.business_type || "Food";
+						const description = store.description || "No description available";
+
+						// Use store image if available, otherwise use placeholder
+						const img = store.store_image_url || assets.food_1;
 
 						return (
 							<div
-								key={store.id || `${title}-${store.user_id}`}
+								key={store.id}
 								className="store-card"
-								onClick={() => navigate(route)}
+								onClick={() => handleStoreClick(store)}
 							>
-								<img src={img} alt={title} className="store-image" />
-								<div className="store-title">{title}</div>
+								<img
+									src={img}
+									alt={title}
+									className="store-image"
+									onError={(e) => {
+										// Fallback to placeholder if image fails to load
+										e.target.src = assets.food_1;
+									}}
+								/>
+								<div className="store-info">
+									<div className="store-title">{title}</div>
+									<div className="store-type">{businessType}</div>
+									{description && (
+										<div className="store-description">
+											{description.length > 50
+												? `${description.substring(0, 50)}...`
+												: description}
+										</div>
+									)}
+								</div>
 							</div>
 						);
 					})

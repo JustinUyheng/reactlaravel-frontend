@@ -69,6 +69,8 @@ import StoreProfile from "./Vendor/StoreProfile";
 import OrderManagement from "./Vendor/OrderManagement";
 import TransactionHistory from "./Vendor/TransactionHistory";
 
+import StoreProducts from "./StoreContents/StoreProducts";
+
 // Component to handle navbar rendering logic
 const NavbarRenderer = () => {
 	const location = useLocation();
@@ -475,6 +477,16 @@ const AppContent = () => {
 							<VendorProtectedRoute>
 								<TransactionHistory />
 							</VendorProtectedRoute>
+						}
+					/>
+
+					{/* Dynamic store routes */}
+					<Route
+						path="/store/:storeId/products"
+						element={
+							<ProtectedRoute>
+								<StoreProducts />
+							</ProtectedRoute>
 						}
 					/>
 
