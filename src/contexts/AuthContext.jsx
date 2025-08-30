@@ -5,6 +5,7 @@ import {
 	logoutUser,
 	getUserProfile,
 } from "../LoginSignup/action";
+import { API_CONFIG } from "../config/api";
 
 const AuthContext = createContext();
 
