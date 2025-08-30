@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style/Feedback.css";
-import { API_CONFIG, getAuthHeaders } from "../config/api";
+import { API_CONFIG, getAuthHeaders, getJsonHeaders } from "../config/api";
 
 const Feedback = () => {
 	const [rating, setRating] = useState(0);
@@ -21,7 +21,7 @@ const Feedback = () => {
 		try {
 			// Try with auth headers if token exists; else fall back to public headers
 			const headers = getAuthHeaders
-				? getAuthHeaders()
+				? getJsonHeaders()
 				: { "Content-Type": "application/json" };
 
 			const res = await fetch(`${API_CONFIG.BASE_URL}/feedback`, {

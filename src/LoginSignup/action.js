@@ -191,7 +191,7 @@ export const getUserById = async (userId) => {
 export const createStore = async (storeData) => {
 	const res = await fetch(`${API_CONFIG.BASE_URL}/stores/create`, {
 		method: "POST",
-		headers: getAuthHeaders(),
+		headers: getJsonHeaders(),
 		body: JSON.stringify(storeData),
 	});
 
