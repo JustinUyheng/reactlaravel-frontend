@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { productService } from "../services/productService";
+import VendorNavigation from "./components/VendorNavigation";
 import { toast } from "react-toastify";
 import "./VendorStyle/ProductManagement.css";
-import VendorNavigation from "./components/VendorNavigation";
 
 const ProductManagement = () => {
 	const { user, isAuthenticated } = useAuth();

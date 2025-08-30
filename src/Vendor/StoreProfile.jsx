@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { API_CONFIG, getAuthHeaders, handleApiResponse } from "../config/api";
 import { toast } from "react-toastify";
 import "./VendorStyle/StoreProfile.css";
+import VendorNavigation from "./components/VendorNavigation";
 
 const StoreProfile = () => {
 	const { user, isAuthenticated } = useAuth();
@@ -142,6 +143,7 @@ const StoreProfile = () => {
 
 	return (
 		<div className="store-profile">
+			<VendorNavigation />
 			<div className="store-profile-header">
 				<h1>Store Profile</h1>
 				<button

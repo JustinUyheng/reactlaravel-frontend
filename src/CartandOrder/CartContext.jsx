@@ -25,22 +25,39 @@ export const CartProvider = ({ children }) => {
 		}
 	}, [cart]);
 
-	const addToCart = (item, type) => {
-		setCart((prev) => {
-			const updatedType = [...prev[type]];
-			const existingIndex = updatedType.findIndex((i) => i.name === item.name);
-			if (existingIndex > -1) {
-				updatedType[existingIndex] = {
-					...updatedType[existingIndex],
-					quantity: updatedType[existingIndex].quantity + (item.quantity || 1), // Allow adding specific quantity
-				};
-			} else {
-				updatedType.push({ ...item, quantity: item.quantity || 1 });
-			}
-			return { ...prev, [type]: updatedType };
-		});
-	};
+	// In your addToCart function, you might want to handle the type
+	const addToCart = (product, quantity = 1) => {
+		const type = product.type;
+		const existingItem = cart[type].find((item) => item.id === product.id);
+		if (existingItem) {
+			setCart((prev) => ({
+				...prev,
+				[type]: prev[type].map((item) =>
+					item.id === product.id
+						? { ...item, quantity: item.quantity + quantity }
+						: item
+				),
+			}));
+		} else {
+			setCart((prev) => ({
+				...prev,
+				[type]: [...prev[type], { ...product, quantity }],
+			}));
+		}
 
+		// Update localStorage
+		const updatedCart = cart.map((item) =>
+			item.id === product.id && item.type === product.type
+				? { ...item, quantity: item.quantity + quantity }
+				: item
+		);
+
+		if (!existingItem) {
+			updatedCart.push({ ...product, quantity });
+		}
+
+		localStorage.setItem("cart", JSON.stringify(updatedCart));
+	};
 	const removeFromCart = (type, index) => {
 		setCart((prev) => {
 			const updatedType = [...prev[type]];
