@@ -520,51 +520,6 @@ const User = () => {
 					</div>
 				</div>
 
-				{/* History Transaction Card */}
-				<div className="profile-card">
-					<div className="card-header">
-						<img
-							src={assets.history}
-							alt="History Transaction"
-							className="card-icon"
-						/>
-						<h3 className="card-title">History Transaction</h3>
-					</div>
-					<div className="card-content">
-						<div className="history-table">
-							<div className="history-row history-header">
-								<span className="history-col">DATE</span>
-								<span className="history-col">ITEM</span>
-								<span className="history-col amount">AMOUNT</span>
-								<span className="history-col status-header">STATUS</span>
-							</div>
-							<div className="history-row">
-								<span className="history-col">May 1, 2025</span>
-								<span className="history-col">Siomai</span>
-								<span className="history-col amount">₱ 20</span>
-								<span className="history-col status">
-									<button className="status-btn reserve-btn">Reserve</button>
-								</span>
-							</div>
-							<div className="history-row">
-								<span className="history-col">May 3, 2025</span>
-								<span className="history-col">Siopao</span>
-								<span className="history-col amount">₱ 25</span>
-								<span className="history-col status">
-									<button className="status-btn order-btn">Order</button>
-								</span>
-							</div>
-							<div className="history-row">
-								<span className="history-col">May 5, 2025</span>
-								<span className="history-col">Bottled Water</span>
-								<span className="history-col amount">₱ 15</span>
-								<span className="history-col status">
-									<button className="status-btn reserve-btn">Reserve</button>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
 				{/* Transaction History Section */}
 				<div className="profile-section-row">
 					<div className="profile-card">
