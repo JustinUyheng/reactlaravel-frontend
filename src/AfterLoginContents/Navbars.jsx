@@ -12,8 +12,6 @@ const Navbars = ({ isVendorUser = false }) => {
 
 	useEffect(() => {
 		const currentPath = location.pathname;
-		// For debugging, you can log the current path:
-		// console.log("Current Navbar Path:", currentPath);
 
 		if (currentPath === "/" || currentPath === "/homepage") {
 			setActiveLink("home");

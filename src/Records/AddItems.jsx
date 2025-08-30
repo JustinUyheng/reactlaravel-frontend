@@ -133,7 +133,6 @@ const AddItems = () => {
 	useEffect(() => {
 		if (activeTab === "orders") {
 			// ... (rest of the useEffect logic for loading orders remains the same)
-			console.log("Fetching order history for Orders tab...");
 			const history = localStorage.getItem("orderHistory");
 			let processedOrders = [];
 			if (history) {

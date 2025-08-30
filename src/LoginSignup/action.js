@@ -24,12 +24,17 @@
 //     return await res.json();
 // }
 
-import { API_CONFIG, getAuthHeaders, handleApiResponse } from "../config/api";
+import {
+	API_CONFIG,
+	getAuthHeaders,
+	getJsonHeaders,
+	handleApiResponse,
+} from "../config/api";
 
 export const loginUser = async (userData) => {
 	const res = await fetch(`${API_CONFIG.BASE_URL}/auth/login`, {
 		method: "POST",
-		headers: API_CONFIG.HEADERS,
+		headers: getJsonHeaders(),
 		body: JSON.stringify(userData),
 	});
 
@@ -45,10 +50,9 @@ export const loginUser = async (userData) => {
 };
 
 export const registerUser = async (userData) => {
-	console.log("testing", userData);
 	const res = await fetch(`${API_CONFIG.BASE_URL}/auth/register`, {
 		method: "POST",
-		headers: API_CONFIG.HEADERS,
+		headers: getJsonHeaders(),
 		body: JSON.stringify(userData),
 	});
 
@@ -99,7 +103,6 @@ export const getUserProfile = async () => {
 			API_CONFIG.BASE_URL.replace("/api", "") || window.location.origin;
 		data.user.profile_picture_url = `${baseUrl}/storage/${data.user.profile_picture}`;
 	}
-	console.log("getUserProfile response data:", data);
 
 	return data;
 };

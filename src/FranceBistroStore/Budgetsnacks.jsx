@@ -138,12 +138,10 @@ const Budgetsnacks = () => {
 
 	// Placeholder functions for edit and delete actions
 	const handleEdit = (itemId) => {
-		console.log("Edit item:", itemId);
 		// Navigate to edit page or open a modal
 	};
 
 	const handleDelete = (itemId) => {
-		console.log("Delete item:", itemId);
 		// Implement delete logic (e.g., API call, update state)
 	};
 

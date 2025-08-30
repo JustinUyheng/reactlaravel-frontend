@@ -51,7 +51,6 @@ const Login = () => {
 		event.preventDefault();
 		try {
 			const data = await loginUser(values);
-			console.log("Login successful:", data);
 			if (data.user.role_id === 2 && !data.user.is_approved) {
 				toast.info(
 					"Your account is pending approval. Please wait for admin confirmation."
@@ -85,14 +84,6 @@ const Login = () => {
 	const handleSubmitRegister = async (event) => {
 		event.preventDefault();
 
-		// Debug logging to see the values
-		console.log("Password:", registerValues.password);
-		console.log("Password confirmation:", registerValues.password_confirmation);
-		console.log(
-			"Passwords match?",
-			registerValues.password === registerValues.password_confirmation
-		);
-
 		// Remove confirmPassword from payload
 		if (registerValues.password !== registerValues.password_confirmation) {
 			toast.error("Passwords do not match!");
@@ -124,7 +115,6 @@ const Login = () => {
 			};
 
 			const data = await registerUser(payload);
-			console.log("Registration successful:", data);
 			toast.success(data.message);
 
 			// If registration is successful, switch to login mode

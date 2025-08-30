@@ -21,18 +21,11 @@ export const AuthProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		console.log("AuthContext - Starting authentication check...");
-		console.log("localStorage auth_token:", localStorage.getItem("auth_token"));
-		console.log("localStorage user_data:", localStorage.getItem("user_data"));
-
 		// Check if user is authenticated on app load
 		if (isAuthenticated()) {
-			console.log("User is authenticated, loading from localStorage...");
-
 			// Immediately load user from localStorage
 			const userData = getCurrentUser();
 			if (userData) {
-				console.log("Setting user from localStorage:", userData);
 				setUser(userData);
 				// Set loading to false immediately so components can render
 				setLoading(false);
@@ -41,7 +34,6 @@ export const AuthProvider = ({ children }) => {
 			// Try to refresh from API in the background
 			getUserProfile()
 				.then((data) => {
-					console.log("Profile refreshed successfully from API:", data.user);
 					setUser(data.user);
 					// Update localStorage with fresh data
 					localStorage.setItem("user_data", JSON.stringify(data.user));
@@ -51,18 +43,15 @@ export const AuthProvider = ({ children }) => {
 					// Keep using localStorage data if API fails
 					const userData = getCurrentUser();
 					if (userData) {
-						console.log("Using localStorage data:", userData);
 						setUser(userData);
 					}
 				});
 		} else {
-			console.log("User not authenticated - no token found");
 			setLoading(false);
 		}
 	}, []);
 
 	const login = (userData) => {
-		console.log("Login called with:", userData);
 		setUser(userData);
 	};
 

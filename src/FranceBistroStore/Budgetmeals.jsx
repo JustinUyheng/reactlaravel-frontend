@@ -40,12 +40,10 @@ const Budgetmeals = () => {
 
 	// Placeholder functions for edit and delete actions
 	const handleEdit = (setId) => {
-		console.log("Edit set:", setId);
 		// Navigate to an edit page or open a modal
 	};
 
 	const handleDelete = (setId) => {
-		console.log("Delete set:", setId);
 		// Implement delete logic, possibly with a confirmation
 	};
 

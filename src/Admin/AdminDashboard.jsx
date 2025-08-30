@@ -37,41 +37,28 @@ const AdminDashboard = () => {
 		max_rating: "",
 	});
 
-	console.log("AdminDashboard - Debug Info:", {
-		isAuthenticated,
-		user,
-		userRole: user?.role_id,
-		authLoading,
-	});
-
 	useEffect(() => {
 		// Wait for auth context to finish loading
 		if (authLoading) {
-			console.log("Auth context still loading...");
 			return;
 		}
 
 		// Check if user is authenticated
 		if (!isAuthenticated) {
-			console.log("User not authenticated, redirecting to login");
 			navigate("/auth");
 			return;
 		}
 
 		// Check if user is admin
 		if (user && user.role_id === 3) {
-			console.log("User is admin, proceeding with dashboard");
 			// Load all dashboard data when component mounts
 			loadDashboardData();
 			return;
 		} else {
-			console.log("User is not admin or not logged in, redirecting to login");
 			navigate("/auth");
 			return;
 		}
 	}, [isAuthenticated, user, authLoading, navigate]);
-
-	console.log("admindash");
 
 	// Show loading while checking authentication
 	if (authLoading) {

@@ -115,7 +115,8 @@ const NavbarRenderer = () => {
 	// Check if user is authenticated and is a vendor
 	const isVendorUser = isAuthenticated && user?.role_id === 2;
 
-	console.log("isvnedor", isVendorUser);
+	// Check if user is authenticated and is a vendor
+	const isBasicUser = isAuthenticated && user?.role_id === 1;
 
 	// Show AdminNavbar if:
 	// 1. User is authenticated and is an admin, OR
@@ -126,6 +127,10 @@ const NavbarRenderer = () => {
 
 	if (isVendorUser) {
 		return <Navbars isVendorUser={isVendorUser} />;
+	}
+
+	if (isBasicUser) {
+		return <Navbars />;
 	}
 
 	// Show public navbar for unauthenticated users or public pages

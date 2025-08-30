@@ -45,7 +45,6 @@ const VendorDashboard = () => {
 
 	useEffect(() => {
 		if (authLoading) {
-			console.log("Auth context still loading...");
 			return;
 		}
 		// Check if user is authenticated and is a vendor

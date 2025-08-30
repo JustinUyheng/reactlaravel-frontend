@@ -302,12 +302,7 @@ const User = () => {
 			toast.error("New password and confirm password do not match.");
 			return;
 		}
-		console.log(
-			"Changing password. Current:",
-			currentPassword,
-			"New:",
-			newPassword
-		);
+
 		setCurrentPassword("");
 		setNewPassword("");
 		setConfirmNewPassword("");
@@ -323,7 +318,6 @@ const User = () => {
 	};
 
 	const handleConfirmLogout = async () => {
-		console.log("Logging out...");
 		setShowLogoutModal(false);
 
 		try {

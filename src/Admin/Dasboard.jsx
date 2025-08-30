@@ -176,10 +176,6 @@ const Dasboard = () => {
 		setActivePath(location.pathname);
 	}, [location.pathname]);
 
-	// Debug logging
-	console.log("Dasboard - Current location:", location.pathname);
-	console.log("Dasboard - Active path:", activePath);
-
 	// This is the base path for your admin section as defined in App.jsx
 	const adminBasePath = "/admin-dashboard";
 

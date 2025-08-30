@@ -115,8 +115,6 @@ const ProductManagement = () => {
 				price: parseFloat(formData.price),
 			};
 
-			console.log("Sending product data:", productDataToSend);
-
 			await productService.createProduct(productDataToSend);
 			toast.success("Product added successfully!");
 			setShowAddModal(false);
@@ -231,12 +229,6 @@ const ProductManagement = () => {
 									<img
 										src={`${import.meta.env.VITE_API_URL?.replace("/api", "")}/storage/${product.image_path}`}
 										alt={product.name}
-										onLoad={() => {
-											console.log(
-												"Image loaded successfully",
-												product.image_url
-											);
-										}}
 									/>
 								) : (
 									<div className="placeholder-image">No Image</div>

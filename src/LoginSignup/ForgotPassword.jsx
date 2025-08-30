@@ -9,7 +9,6 @@ const ForgotPassword = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		// TODO: Implement your logic to send the password reset email
-		console.log("Password reset requested for email:", email);
 		toast.info(
 			"If an account exists for this email, instructions to reset your password have been sent."
 		);
