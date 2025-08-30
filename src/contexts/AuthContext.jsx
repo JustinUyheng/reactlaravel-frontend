@@ -76,9 +76,18 @@ export const AuthProvider = ({ children }) => {
 		if (isAuthenticated()) {
 			try {
 				const data = await getUserProfile();
-				setUser(data.user);
-				localStorage.setItem("user_data", JSON.stringify(data.user));
-				return data.user;
+
+				const userData = {
+					...data.user,
+					profile_picture_url:
+						data.user.profile_picture_url ||
+						(data.user.profile_picture
+							? `${API_CONFIG.BASE_URL.replace("/api", "")}/storage/${data.user.profile_picture}`
+							: null),
+				};
+				setUser(userData);
+				localStorage.setItem("user_data", JSON.stringify(userData));
+				return userData;
 			} catch (error) {
 				console.error("Failed to refresh profile:", error);
 				throw error;

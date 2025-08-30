@@ -89,6 +89,16 @@ export const getUserProfile = async () => {
 		throw new Error(errorData.message || `HTTP error! status: ${res.status}`);
 	}
 	const data = await res.json();
+	if (
+		data.user &&
+		data.user.profile_picture &&
+		!data.user.profile_picture_url
+	) {
+		// Construct the URL from your Laravel app
+		const baseUrl =
+			API_CONFIG.BASE_URL.replace("/api", "") || window.location.origin;
+		data.user.profile_picture_url = `${baseUrl}/storage/${data.user.profile_picture}`;
+	}
 	console.log("getUserProfile response data:", data);
 
 	return data;

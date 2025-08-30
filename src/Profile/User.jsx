@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "./userstyle/User.css";
-import { assets } from "../assets/assets"; // Assuming assets are correctly set up
+import { assets } from "../assets/assets";
 
 const User = () => {
 	// --- State Variables ---
@@ -14,18 +14,21 @@ const User = () => {
 	const [newPassword, setNewPassword] = useState("");
 	const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
-	const [showEditTrigger, setShowEditTrigger] = useState(false); // This now controls overall edit mode
+	const [showEditTrigger, setShowEditTrigger] = useState(false);
 	const [profileImageUrl, setProfileImageUrl] = useState(
 		assets.user || assets.personal
 	);
-	const [currentEmail, setCurrentEmail] = useState(""); // Email might also be editable
+	const [currentEmail, setCurrentEmail] = useState("");
+
+	// Profile picture upload states
+	const [isUploadingPicture, setIsUploadingPicture] = useState(false);
+	const [pictureUploadError, setPictureUploadError] = useState("");
 
 	const [profileDetails, setProfileDetails] = useState({
 		name: "",
 		age: "",
 		contactNumber: "",
 	});
-	// State to hold temporary values while editing personal details
 	const [editableProfileDetails, setEditableProfileDetails] = useState({});
 	const [editableEmail, setEditableEmail] = useState("");
 
@@ -39,10 +42,20 @@ const User = () => {
 	const navigate = useNavigate();
 	const { user, logout, refreshProfile } = useAuth();
 
+	// API Base URL - adjust this to match your backend
+	const API_BASE_URL =
+		import.meta.env.VITE_API_URL || "http://localhost:8000/api";
+
+	// Get auth token
+	const getAuthToken = () => {
+		return (
+			localStorage.getItem("auth_token") || sessionStorage.getItem("auth_token")
+		);
+	};
+
 	// --- Effects ---
 	useEffect(() => {
 		if (user) {
-			// Update state with real user data
 			setCurrentEmail(user.email || "");
 			setEditableEmail(user.email || "");
 
@@ -50,15 +63,23 @@ const User = () => {
 			const userDetails = {
 				name: fullName,
 				age: user.birthday ? calculateAge(user.birthday) : "",
-				contactNumber: "", // This might not be in your user model yet
+				contactNumber: user.contact_number || "",
 			};
 
 			setProfileDetails(userDetails);
 			setEditableProfileDetails(userDetails);
+
+			// Set profile picture URL from user data
+			if (user.profile_picture_url) {
+				const apiBaseUrl = API_BASE_URL.replace("/api", "");
+				const fullProfilePictureUrl = user.profile_picture_url
+					? `${apiBaseUrl}${user.profile_picture_url}`
+					: null;
+				setProfileImageUrl(fullProfilePictureUrl);
+			}
 		}
 	}, [user]);
 
-	// Helper function to calculate age from birthday
 	const calculateAge = (birthday) => {
 		const today = new Date();
 		const birthDate = new Date(birthday);
@@ -81,7 +102,6 @@ const User = () => {
 		}
 	}, [isAddressEditing, address]);
 
-	// Update editable fields when edit mode is toggled
 	useEffect(() => {
 		if (showEditTrigger) {
 			setEditableProfileDetails(profileDetails);
@@ -89,7 +109,113 @@ const User = () => {
 		}
 	}, [showEditTrigger, profileDetails, currentEmail]);
 
-	// --- Handlers ---
+	// --- Profile Picture Handlers ---
+	const handleProfileImageChange = async (event) => {
+		const file = event.target.files[0];
+		if (!file) return;
+
+		// Validate file
+		if (!file.type.startsWith("image/")) {
+			setPictureUploadError("Please select an image file");
+			return;
+		}
+
+		if (file.size > 2 * 1024 * 1024) {
+			setPictureUploadError("File size must be less than 2MB");
+			return;
+		}
+
+		// Create preview
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			setProfileImageUrl(e.target.result);
+		};
+		reader.readAsDataURL(file);
+
+		// Upload to server
+		await uploadProfilePicture(file);
+		event.target.value = null;
+	};
+
+	const uploadProfilePicture = async (file) => {
+		setIsUploadingPicture(true);
+		setPictureUploadError("");
+
+		try {
+			const formData = new FormData();
+			formData.append("profile_picture", file);
+
+			const response = await fetch(`${API_BASE_URL}/profile/picture/upload`, {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${getAuthToken()}`,
+					Accept: "application/json",
+				},
+				body: formData,
+			});
+
+			const data = await response.json();
+
+			if (data.success) {
+				setProfileImageUrl(data.profile_picture_url);
+				// Refresh the user context if needed
+				if (refreshProfile) {
+					await refreshProfile();
+				}
+				alert("Profile picture updated successfully!");
+			} else {
+				setPictureUploadError(data.message || "Upload failed");
+				// Revert to original image
+				setProfileImageUrl(
+					user?.profile_picture_url || assets.user || assets.personal
+				);
+			}
+		} catch (err) {
+			setPictureUploadError("Network error. Please try again.");
+			setProfileImageUrl(
+				user?.profile_picture_url || assets.user || assets.personal
+			);
+			console.error("Upload error:", err);
+		} finally {
+			setIsUploadingPicture(false);
+		}
+	};
+
+	const deleteProfilePicture = async () => {
+		if (!user?.profile_picture_url) return;
+
+		setIsUploadingPicture(true);
+		setPictureUploadError("");
+
+		try {
+			const response = await fetch(`${API_BASE_URL}/profile/picture`, {
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${getAuthToken()}`,
+					Accept: "application/json",
+				},
+			});
+
+			const data = await response.json();
+
+			if (data.success) {
+				setProfileImageUrl(assets.user || assets.personal);
+				if (refreshProfile) {
+					await refreshProfile();
+				}
+				alert("Profile picture removed successfully!");
+			} else {
+				setPictureUploadError(data.message || "Delete failed");
+			}
+		} catch (err) {
+			setPictureUploadError("Network error. Please try again.");
+			console.error("Delete error:", err);
+		} finally {
+			setIsUploadingPicture(false);
+		}
+	};
+
+	// --- Other Handlers ---
 	const togglePasswordVisibility = (field) => {
 		switch (field) {
 			case "current":
@@ -112,16 +238,13 @@ const User = () => {
 
 	const handleEditProfileClick = () => {
 		if (showEditTrigger) {
-			// When clicking "Done Editing"
 			setProfileDetails(editableProfileDetails);
-			setCurrentEmail(editableEmail); // If email is also made editable
+			setCurrentEmail(editableEmail);
 			alert("Profile details updated locally. Implement API call for saving.");
-			// Add API call logic here to save profileDetails and currentEmail
 		}
 		setShowEditTrigger(!showEditTrigger);
 	};
 
-	// Handler for changes in personal detail input fields
 	const handleProfileDetailChange = (e) => {
 		const { name, value } = e.target;
 		if (name === "email") {
@@ -140,19 +263,6 @@ const User = () => {
 		}
 	};
 
-	const handleProfileImageChange = (event) => {
-		const file = event.target.files[0];
-		if (file) {
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				setProfileImageUrl(reader.result);
-				alert("Profile picture updated locally. Implement upload logic.");
-			};
-			reader.readAsDataURL(file);
-		}
-		event.target.value = null;
-	};
-
 	const handleEditAddressClick = () => {
 		setIsAddressEditing(true);
 	};
@@ -161,7 +271,6 @@ const User = () => {
 		setAddress(tempAddress);
 		setIsAddressEditing(false);
 		alert("Address updated locally. Implement API call.");
-		// Add API call logic here
 	};
 
 	const handlePasswordInputChange = (e, field) => {
@@ -200,7 +309,6 @@ const User = () => {
 		setNewPassword("");
 		setConfirmNewPassword("");
 		alert("Password change initiated (implement backend logic).");
-		// Add API call logic here
 	};
 
 	const handleOpenLogoutModal = () => {
@@ -224,7 +332,6 @@ const User = () => {
 		}
 	};
 
-	// Add a function to refresh profile data
 	const handleRefreshProfile = async () => {
 		try {
 			await refreshProfile();
@@ -234,7 +341,6 @@ const User = () => {
 			console.error("Refresh failed:", error);
 		}
 	};
-	// --- END Handlers ---
 
 	return (
 		<div className="user-profile-container">
@@ -242,22 +348,44 @@ const User = () => {
 			<div className={`profile-header ${showEditTrigger ? "editing" : ""}`}>
 				<div className="profile-image-wrapper">
 					<img src={profileImageUrl} alt="User" className="profile-icon" />
-					{/* Profile pic edit icon appears when main "Edit Profile" is active */}
-					{showEditTrigger && (
-						<div
-							className="profile-pic-edit-icon"
-							onClick={handleProfileEditTriggerClick}
-							title="Change profile picture"
-						>
-							<img src={assets.edit_square || assets.edit} alt="Edit Pic" />
+
+					{/* Loading overlay for profile picture */}
+					{isUploadingPicture && (
+						<div className="profile-pic-loading-overlay">
+							<div className="loading-spinner"></div>
 						</div>
 					)}
+
+					{/* Profile pic edit icon - now shows when main "Edit Profile" is active OR always visible */}
+					<div
+						className="profile-pic-edit-icon"
+						onClick={handleProfileEditTriggerClick}
+						title="Change profile picture"
+						style={{
+							opacity: isUploadingPicture ? 0.5 : 1,
+							pointerEvents: isUploadingPicture ? "none" : "auto",
+						}}
+					>
+						<img src={assets.edit_square || assets.edit} alt="Edit Pic" />
+					</div>
+
+					{/* Delete picture button (only show if user has uploaded picture) */}
+					{user?.profile_picture_url && !isUploadingPicture && (
+						<button
+							className="profile-pic-delete-icon"
+							onClick={deleteProfilePicture}
+							title="Remove profile picture"
+						>
+							<img src={assets.bin} alt="Delete Pic" />
+						</button>
+					)}
+
 					<input
 						type="file"
 						ref={fileInputRef}
 						onChange={handleProfileImageChange}
 						style={{ display: "none" }}
-						accept="image/png, image/jpeg, image/gif"
+						accept="image/png, image/jpeg, image/gif, image/jpg"
 					/>
 				</div>
 
@@ -277,7 +405,7 @@ const User = () => {
 					{showEditTrigger ? (
 						<input
 							type="text"
-							name="name" // Matches the key in editableProfileDetails
+							name="name"
 							value={editableProfileDetails.name}
 							onChange={handleProfileDetailChange}
 							className="editable-input user-name-display-input"
@@ -295,6 +423,11 @@ const User = () => {
 					{showEditTrigger ? "Done Editing" : "Edit Profile"}
 				</button>
 			</div>
+
+			{/* Profile Picture Error Message */}
+			{pictureUploadError && (
+				<div className="profile-picture-error">{pictureUploadError}</div>
+			)}
 
 			<hr className="divider" />
 
@@ -330,7 +463,7 @@ const User = () => {
 								<span className="detail-label">Age:</span>
 								{showEditTrigger ? (
 									<input
-										type="number" // Or text, with validation
+										type="number"
 										name="age"
 										value={editableProfileDetails.age}
 										onChange={handleProfileDetailChange}
@@ -345,8 +478,8 @@ const User = () => {
 								{showEditTrigger ? (
 									<input
 										type="email"
-										name="email" // Special handling if email is edited in header
-										value={editableEmail} // Use editableEmail for consistency
+										name="email"
+										value={editableEmail}
 										onChange={handleProfileDetailChange}
 										className="editable-input"
 									/>
@@ -358,7 +491,7 @@ const User = () => {
 								<span className="detail-label">Contact Number:</span>
 								{showEditTrigger ? (
 									<input
-										type="tel" // Or text, with validation
+										type="tel"
 										name="contactNumber"
 										value={editableProfileDetails.contactNumber}
 										onChange={handleProfileDetailChange}
@@ -423,12 +556,8 @@ const User = () => {
 
 			{/* Bottom Section */}
 			<div className="profile-section-row bottom-row">
-				{" "}
-				{/* Added class for specific styling if needed */}
 				{/* Settings Card */}
 				<div className="profile-card settings-card">
-					{" "}
-					{/* Added class for specific styling if needed */}
 					<div className="card-header">
 						<img src={assets.settings} alt="Settings" className="card-icon" />
 						<h3 className="card-title">Settings</h3>
@@ -502,17 +631,16 @@ const User = () => {
 						</button>
 					</div>
 				</div>
-				{/* Saved Addressed Card */}
+
+				{/* Saved Address Card */}
 				<div className="profile-card address-card">
-					{" "}
-					{/* Added class for specific styling if needed */}
 					<div className="card-header">
 						<img
 							src={assets.location}
 							alt="Saved Address"
 							className="card-icon"
 						/>
-						<h3 className="card-title">Saved Addressed</h3>
+						<h3 className="card-title">Saved Address</h3>
 					</div>
 					<div className="card-content address-content">
 						{isAddressEditing ? (
