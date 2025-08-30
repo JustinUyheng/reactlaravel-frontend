@@ -15,12 +15,13 @@ const ProductManagement = () => {
 	const [showEditModal, setShowEditModal] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [activeCategory, setActiveCategory] = useState("all");
+	const [selectedImageName, setSelectedImageName] = useState("");
 
 	// Form states
 	const [formData, setFormData] = useState({
 		name: "",
 		description: "",
-		category: "snacks",
+		category: "",
 		price: "",
 		image: null,
 		is_available: true,
@@ -32,6 +33,11 @@ const ProductManagement = () => {
 		{ value: "budget_snacks", label: "Budget Snacks" },
 		{ value: "snacks", label: "Snacks" },
 		{ value: "drinks", label: "Drinks" },
+	];
+
+	const formCategories = [
+		{ value: "", label: "Select a category" },
+		...categories,
 	];
 
 	useEffect(() => {
@@ -61,28 +67,62 @@ const ProductManagement = () => {
 			[name]:
 				type === "checkbox" ? checked : type === "file" ? files[0] : value,
 		}));
+
+		// Update selected image name for display
+		if (type === "file" && files[0]) {
+			setSelectedImageName(files[0].name);
+		} else if (type === "file" && !files[0]) {
+			setSelectedImageName("");
+		}
 	};
 
 	const resetForm = () => {
 		setFormData({
 			name: "",
 			description: "",
-			category: "snacks",
+			category: "",
 			price: "",
 			image: null,
 			is_available: true,
 		});
+		setSelectedImageName("");
 	};
 
 	const handleAddProduct = async (e) => {
 		e.preventDefault();
+
+		// Validate form data before sending
+		if (!formData.name.trim()) {
+			toast.error("Product name is required");
+			return;
+		}
+
+		if (!formData.category) {
+			toast.error("Please select a category");
+			return;
+		}
+
+		if (!formData.price || parseFloat(formData.price) <= 0) {
+			toast.error("Please enter a valid price");
+			return;
+		}
+
 		try {
-			await productService.createProduct(formData);
+			// Ensure price is a number
+			const productDataToSend = {
+				...formData,
+				price: parseFloat(formData.price),
+			};
+
+			console.log("Sending product data:", productDataToSend);
+
+			await productService.createProduct(productDataToSend);
 			toast.success("Product added successfully!");
 			setShowAddModal(false);
 			resetForm();
 			fetchProducts();
 		} catch (error) {
+			console.error("Product creation error:", error);
 			toast.error("Failed to add product: " + error.message);
 		}
 	};
@@ -123,6 +163,7 @@ const ProductManagement = () => {
 			image: null,
 			is_available: product.is_available,
 		});
+		setSelectedImageName("");
 		setShowEditModal(true);
 	};
 
@@ -188,8 +229,11 @@ const ProductManagement = () => {
 									<img
 										src={`${import.meta.env.VITE_API_URL?.replace("/api", "")}/storage/${product.image_path}`}
 										alt={product.name}
-										onError={(e) => {
-											e.target.src = "/placeholder-food.png";
+										onLoad={() => {
+											console.log(
+												"Image loaded successfully",
+												product.image_url
+											);
 										}}
 									/>
 								) : (
@@ -281,7 +325,7 @@ const ProductManagement = () => {
 										onChange={handleInputChange}
 										required
 									>
-										{categories.map((category) => (
+										{formCategories.map((category) => (
 											<option key={category.value} value={category.value}>
 												{category.label}
 											</option>
@@ -310,7 +354,37 @@ const ProductManagement = () => {
 									name="image"
 									onChange={handleInputChange}
 									accept="image/*"
+									id="product-image-input"
+									style={{ display: "none" }}
 								/>
+								<div className="file-input-wrapper">
+									<button
+										type="button"
+										className="file-select-btn"
+										onClick={() =>
+											document.getElementById("product-image-input").click()
+										}
+									>
+										Choose Image
+									</button>
+									{selectedImageName && (
+										<div className="selected-file">
+											<span className="file-name">{selectedImageName}</span>
+											<button
+												type="button"
+												className="remove-file-btn"
+												onClick={() => {
+													setFormData((prev) => ({ ...prev, image: null }));
+													setSelectedImageName("");
+													document.getElementById("product-image-input").value =
+														"";
+												}}
+											>
+												×
+											</button>
+										</div>
+									)}
+								</div>
 							</div>
 
 							<div className="form-actions">
@@ -378,7 +452,7 @@ const ProductManagement = () => {
 										onChange={handleInputChange}
 										required
 									>
-										{categories.map((category) => (
+										{formCategories.map((category) => (
 											<option key={category.value} value={category.value}>
 												{category.label}
 											</option>
@@ -407,12 +481,51 @@ const ProductManagement = () => {
 									name="image"
 									onChange={handleInputChange}
 									accept="image/*"
+									id="edit-product-image-input"
+									style={{ display: "none" }}
 								/>
-								{selectedProduct.image_path && (
-									<p className="current-image">
-										Current image will be replaced if a new one is selected
-									</p>
-								)}
+								<div className="file-input-wrapper">
+									<button
+										type="button"
+										className="file-select-btn"
+										onClick={() =>
+											document
+												.getElementById("edit-product-image-input")
+												.click()
+										}
+									>
+										Choose New Image
+									</button>
+									{selectedImageName && (
+										<div className="selected-file">
+											<span className="file-name">{selectedImageName}</span>
+											<button
+												type="button"
+												className="remove-file-btn"
+												onClick={() => {
+													setFormData((prev) => ({ ...prev, image: null }));
+													setSelectedImageName("");
+													document.getElementById(
+														"edit-product-image-input"
+													).value = "";
+												}}
+											>
+												×
+											</button>
+										</div>
+									)}
+									{selectedProduct.image_path && !selectedImageName && (
+										<div className="current-image-info">
+											<p>
+												Current image:{" "}
+												{selectedProduct.image_path.split("/").pop()}
+											</p>
+											<p className="image-note">
+												Select a new image to replace the current one
+											</p>
+										</div>
+									)}
+								</div>
 							</div>
 
 							<div className="form-group">

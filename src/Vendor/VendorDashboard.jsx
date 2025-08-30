@@ -9,29 +9,36 @@ const VendorDashboard = () => {
 	const navigate = useNavigate();
 
 	const [store, setStore] = useState(null);
-	const [_, setLoading] = useState(true);
+	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
 	const fetchVendorStore = async () => {
 		try {
-			const response = await fetch(`${API_CONFIG.BASE_URL}/stores/vendor`, {
+			setError(null);
+			const response = await fetch(`${API_CONFIG.BASE_URL}/store`, {
 				method: "GET",
 				headers: getAuthHeaders(),
 			});
 
 			if (response.ok) {
 				const data = await response.json();
-				setStore(data.store);
+				if (data.store) {
+					setStore(data.store);
+				} else {
+					setStore(null);
+				}
 			} else if (response.status === 404) {
 				// No store found - this is normal for new vendors
 				setStore(null);
 			} else {
 				const errorData = await response.json();
 				setError(errorData.message || "Failed to fetch store data");
+				setStore(null);
 			}
 		} catch (error) {
 			console.error("Error fetching store:", error);
 			setError("Failed to fetch store data");
+			setStore(null);
 		}
 	};
 
@@ -52,16 +59,11 @@ const VendorDashboard = () => {
 		});
 	}, [isAuthenticated, user, authLoading, navigate]);
 
-	// const handleStoreCreated = async () => {
-	// 	await fetchVendorStore();
-	// 	await refreshProfile();
-	// };
-
 	if (!isAuthenticated || user?.role_id !== 2) {
 		return <div>Access denied. Vendor access required.</div>;
 	}
 
-	if (authLoading) {
+	if (authLoading || loading) {
 		return (
 			<div
 				style={{
@@ -89,7 +91,13 @@ const VendorDashboard = () => {
 			{error && (
 				<div
 					className="error-message"
-					style={{ color: "red", margin: "10px 0" }}
+					style={{
+						color: "red",
+						margin: "10px 0",
+						padding: "10px",
+						backgroundColor: "#ffebee",
+						borderRadius: "4px",
+					}}
 				>
 					{error}
 				</div>
@@ -113,17 +121,26 @@ const VendorDashboard = () => {
 						<p>
 							<strong>Business Type:</strong> {store.business_type}
 						</p>
-						{/* <p>
-							<strong>Address:</strong> {store.address}
-						</p>
-						<p>
-							<strong>Contact:</strong> {store.contact_number}
-						</p>
+						{store.description && (
+							<p>
+								<strong>Description:</strong> {store.description}
+							</p>
+						)}
+						{store.address && (
+							<p>
+								<strong>Address:</strong> {store.address}
+							</p>
+						)}
+						{store.contact_number && (
+							<p>
+								<strong>Contact:</strong> {store.contact_number}
+							</p>
+						)}
 						{store.operating_hours && (
 							<p>
 								<strong>Hours:</strong> {store.operating_hours}
 							</p>
-						)} */}
+						)}
 					</div>
 
 					<div className="store-actions">
@@ -132,6 +149,9 @@ const VendorDashboard = () => {
 						</button>
 						<button onClick={() => navigate("/vendor/orders")}>
 							View Orders
+						</button>
+						<button onClick={() => navigate("/vendor/transactions")}>
+							Transaction History
 						</button>
 						<button onClick={() => navigate("/vendor/profile")}>
 							Edit Store Profile

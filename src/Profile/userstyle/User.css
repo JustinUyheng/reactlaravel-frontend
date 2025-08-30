@@ -285,6 +285,20 @@
 	text-align: left;
 }
 
+/* Transaction History Card Styles */
+.profile-card .card-content {
+	padding: 0; /* Remove default padding for transaction history */
+}
+
+.profile-card .card-content .user-transaction-history {
+	margin: 0; /* Remove margin for transaction history */
+}
+
+/* Ensure proper spacing for transaction history within profile */
+.profile-section-row .profile-card:has(.user-transaction-history) {
+	margin-bottom: 20px;
+}
+
 .status-btn {
 	padding: 5px 12px;
 	border-radius: 15px;

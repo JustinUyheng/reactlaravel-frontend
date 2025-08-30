@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import "./userstyle/User.css";
 import { assets } from "../assets/assets";
 import { toast } from "react-toastify";
+import UserTransactionHistory from "./UserTransactionHistory";
+import "./userstyle/User.css";
 
 const User = () => {
 	// --- State Variables ---
@@ -561,6 +562,17 @@ const User = () => {
 									<button className="status-btn reserve-btn">Reserve</button>
 								</span>
 							</div>
+						</div>
+					</div>
+				</div>
+				{/* Transaction History Section */}
+				<div className="profile-section-row">
+					<div className="profile-card">
+						<div className="card-header">
+							<h3>Transaction History</h3>
+						</div>
+						<div className="card-content">
+							<UserTransactionHistory />
 						</div>
 					</div>
 				</div>

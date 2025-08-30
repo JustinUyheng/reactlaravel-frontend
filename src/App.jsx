@@ -66,6 +66,8 @@ import VendorDashboard from "./Vendor/VendorDashboard";
 import CreateStore from "./Vendor/CreateStore";
 import ProductManagement from "./Vendor/ProductManagement";
 import StoreProfile from "./Vendor/StoreProfile";
+import OrderManagement from "./Vendor/OrderManagement";
+import TransactionHistory from "./Vendor/TransactionHistory";
 
 // Component to handle navbar rendering logic
 const NavbarRenderer = () => {
@@ -432,6 +434,22 @@ const AppContent = () => {
 						element={
 							<VendorProtectedRoute>
 								<StoreProfile />
+							</VendorProtectedRoute>
+						}
+					/>
+					<Route
+						path="/vendor/orders"
+						element={
+							<VendorProtectedRoute>
+								<OrderManagement />
+							</VendorProtectedRoute>
+						}
+					/>
+					<Route
+						path="/vendor/transactions"
+						element={
+							<VendorProtectedRoute>
+								<TransactionHistory />
 							</VendorProtectedRoute>
 						}
 					/>
