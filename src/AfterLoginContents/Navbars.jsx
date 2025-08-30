@@ -5,7 +5,7 @@ import "./styless/Navbars.css"; // Make sure 'styless' is the correct folder nam
 import { assets } from "../assets/assets"; // Ensure this path is correct for your assets
 import { Link, useLocation } from "react-router-dom";
 
-const Navbars = () => {
+const Navbars = ({ isVendorUser = false }) => {
 	const [activeLink, setActiveLink] = useState("home");
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const location = useLocation();
@@ -100,6 +100,15 @@ const Navbars = () => {
 					>
 						Stores
 					</Link>
+					{isVendorUser && (
+						<Link
+							to="/vendor/dashboard"
+							className={`nav-link ${activeLink === "vendor-dashboard" ? "active" : ""}`}
+							onClick={() => handleNavLinkClick("vendor-dashboard")}
+						>
+							Vendor Dashboard
+						</Link>
+					)}
 					<Link
 						to="/user-profile"
 						className={`nav-link ${activeLink === "user-profile" ? "active" : ""}`} // Added nav-link for consistent styling potential

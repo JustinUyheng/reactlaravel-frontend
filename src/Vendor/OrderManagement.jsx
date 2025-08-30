@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { orderService } from "../services/orderService";
 import { toast } from "react-toastify";
 import "./VendorStyle/OrderManagement.css";
+import VendorNavigation from "./components/VendorNavigation";
 
 const OrderManagement = () => {
 	const { user, isAuthenticated } = useAuth();
@@ -105,6 +106,7 @@ const OrderManagement = () => {
 
 	return (
 		<div className="order-management">
+			<VendorNavigation />
 			<div className="order-management-header">
 				<h1>Order Management</h1>
 				<div className="header-actions">

@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { productService } from "../services/productService";
 import { toast } from "react-toastify";
 import "./VendorStyle/ProductManagement.css";
+import VendorNavigation from "./components/VendorNavigation";
 
 const ProductManagement = () => {
 	const { user, isAuthenticated } = useAuth();
@@ -183,6 +184,7 @@ const ProductManagement = () => {
 
 	return (
 		<div className="product-management">
+			<VendorNavigation />
 			<div className="product-management-header">
 				<h1>Product Management</h1>
 				<button

@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { orderService } from "../services/orderService";
 import { toast } from "react-toastify";
 import "./VendorStyle/TransactionHistory.css";
+import VendorNavigation from "./components/VendorNavigation";
 
 const TransactionHistory = () => {
 	const { user, isAuthenticated } = useAuth();
@@ -163,6 +164,7 @@ const TransactionHistory = () => {
 
 	return (
 		<div className="transaction-history">
+			<VendorNavigation />
 			<div className="transaction-history-header">
 				<h1>Transaction History</h1>
 			</div>

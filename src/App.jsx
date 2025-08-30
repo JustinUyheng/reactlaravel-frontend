@@ -89,13 +89,33 @@ const NavbarRenderer = () => {
 		"/admin-test",
 	];
 
+	// Vendor paths that should show vendor-specific navigation
+	const vendorPaths = [
+		"/vendor/dashboard",
+		"/vendor/create-store",
+		"/vendor/products",
+		"/vendor/profile",
+		"/vendor/orders",
+		"/vendor/transactions",
+	];
+
 	// Check if current path is an admin path
 	const isAdminPath = adminPaths.some((path) =>
 		location.pathname.startsWith(path)
 	);
 
+	// Check if current path is a vendor path
+	const isVendorPath = vendorPaths.some((path) =>
+		location.pathname.startsWith(path)
+	);
+
 	// Check if user is authenticated and is an admin
 	const isAdminUser = isAuthenticated && user?.role_id === 3;
+
+	// Check if user is authenticated and is a vendor
+	const isVendorUser = isAuthenticated && user?.role_id === 2;
+
+	console.log("isvnedor", isVendorUser);
 
 	// Show AdminNavbar if:
 	// 1. User is authenticated and is an admin, OR
@@ -104,9 +124,8 @@ const NavbarRenderer = () => {
 		return <AdminNavbar />;
 	}
 
-	// Show logged-in user navbar if user is authenticated and not on admin paths
-	if (isAuthenticated && !isAdminPath) {
-		return <Navbars />;
+	if (isVendorUser) {
+		return <Navbars isVendorUser={isVendorUser} />;
 	}
 
 	// Show public navbar for unauthenticated users or public pages
