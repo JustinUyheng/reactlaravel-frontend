@@ -12,6 +12,7 @@ import {
 } from "../LoginSignup/action";
 import "./DashStyle/Dashboard.css";
 import "./Dashboard.css";
+import { toast } from "react-toastify";
 
 const AdminDashboard = () => {
 	const { user, isAuthenticated, loading: authLoading } = useAuth();
@@ -240,10 +241,10 @@ const AdminDashboard = () => {
 	const handleApproveVendor = async (userId) => {
 		try {
 			await approveVendor(userId);
-			alert("Vendor approved successfully!");
+			toast.success("Vendor approved successfully!");
 			loadData("pending-vendors"); // Refresh the list
 		} catch (error) {
-			alert("Failed to approve vendor: " + error.message);
+			toast.error("Failed to approve vendor: " + error.message);
 		}
 	};
 
@@ -255,10 +256,10 @@ const AdminDashboard = () => {
 		) {
 			try {
 				await rejectVendor(userId);
-				alert("Vendor rejected successfully!");
+				toast.success("Vendor rejected successfully!");
 				loadData("pending-vendors"); // Refresh the list
 			} catch (error) {
-				alert("Failed to reject vendor: " + error.message);
+				toast.error("Failed to reject vendor: " + error.message);
 			}
 		}
 	};

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { createStore } from "../LoginSignup/action";
 import "./VendorStyle/CreateStore.css";
+import { toast } from "react-toastify";
 
 const CreateStore = () => {
 	const { user, isAuthenticated } = useAuth();
@@ -43,7 +44,7 @@ const CreateStore = () => {
 
 		try {
 			await createStore(formData);
-			alert("Store created successfully!");
+			toast.success("Store created successfully!");
 			navigate("/vendor/dashboard"); // Navigate to vendor dashboard
 		} catch (error) {
 			setError(error.message);

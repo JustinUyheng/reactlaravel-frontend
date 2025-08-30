@@ -5,6 +5,7 @@ import "./RecStyle/AddItems.css";
 import { assets } from "../assets/assets";
 import ListItems from "./ListItems"; // Assuming ListItems.jsx is in the same folder
 import Orderss from "./Orderss"; // Assuming Orderss.jsx is in the same folder
+import { toast } from "react-toastify";
 
 // Keep CheckIcon and RemoveIcon components
 const CheckIcon = () => (
@@ -208,7 +209,7 @@ const AddItems = () => {
 			!productCategory ||
 			!imagePreview
 		) {
-			alert(
+			toast.warning(
 				"Please fill in Product Name, Category, Price, and upload an Image."
 			);
 			return;

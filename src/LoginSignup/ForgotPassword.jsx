@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets"; // Adjust path if necessary
 import "./styles/ForgotPassword.css"; // We'll create this CSS file
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
 	const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ const ForgotPassword = () => {
 		event.preventDefault();
 		// TODO: Implement your logic to send the password reset email
 		console.log("Password reset requested for email:", email);
-		alert(
+		toast.info(
 			"If an account exists for this email, instructions to reset your password have been sent."
 		);
 		// Optionally navigate to another page, e.g., back to login

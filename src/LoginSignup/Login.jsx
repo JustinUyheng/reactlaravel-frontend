@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import "./styles/Login.css";
 import { assets } from "../assets/assets";
 import { loginUser, registerUser } from "./action";
+import { toast } from "react-toastify";
 
 const Login = () => {
 	const [values, setValues] = useState({
@@ -52,7 +53,7 @@ const Login = () => {
 			const data = await loginUser(values);
 			console.log("Login successful:", data);
 			if (data.user.role_id === 2 && !data.user.is_approved) {
-				alert(
+				toast.info(
 					"Your account is pending approval. Please wait for admin confirmation."
 				);
 				return;
@@ -71,7 +72,7 @@ const Login = () => {
 			}
 		} catch (error) {
 			console.error("Login failed:", error.message);
-			alert(error.message || "Invalid credentials!");
+			toast.error(error.message || "Invalid credentials!");
 		}
 	};
 
@@ -94,7 +95,7 @@ const Login = () => {
 
 		// Remove confirmPassword from payload
 		if (registerValues.password !== registerValues.password_confirmation) {
-			alert("Passwords do not match!");
+			toast.error("Passwords do not match!");
 			return;
 		}
 
@@ -106,7 +107,7 @@ const Login = () => {
 			!registerValues.birthday ||
 			!registerValues.gender
 		) {
-			alert("Please fill in all required fields!");
+			toast.warning("Please fill in all required fields!");
 			return;
 		}
 
@@ -124,14 +125,14 @@ const Login = () => {
 
 			const data = await registerUser(payload);
 			console.log("Registration successful:", data);
-			alert(data.message);
+			toast.success(data.message);
 
 			// If registration is successful, switch to login mode
 			setValues({ email: registerValues.email, password: "" });
 			// You might want to add a way to switch back to login mode
 		} catch (error) {
 			console.error("Registration failed:", error.message);
-			alert(error.message || "Registration failed!");
+			toast.error(error.message || "Registration failed!");
 		}
 	};
 

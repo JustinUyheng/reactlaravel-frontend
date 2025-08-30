@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "./userstyle/User.css";
 import { assets } from "../assets/assets";
+import { toast } from "react-toastify";
 
 const User = () => {
 	// --- State Variables ---
@@ -23,6 +24,7 @@ const User = () => {
 	// Profile picture upload states
 	const [isUploadingPicture, setIsUploadingPicture] = useState(false);
 	const [pictureUploadError, setPictureUploadError] = useState("");
+	const [isImageLoading, setIsImageLoading] = useState(false);
 
 	const [profileDetails, setProfileDetails] = useState({
 		name: "",
@@ -125,13 +127,6 @@ const User = () => {
 			return;
 		}
 
-		// Create preview
-		const reader = new FileReader();
-		reader.onload = (e) => {
-			setProfileImageUrl(e.target.result);
-		};
-		reader.readAsDataURL(file);
-
 		// Upload to server
 		await uploadProfilePicture(file);
 		event.target.value = null;
@@ -157,12 +152,17 @@ const User = () => {
 			const data = await response.json();
 
 			if (data.success) {
-				setProfileImageUrl(data.profile_picture_url);
+				const apiBaseUrl = API_BASE_URL.replace("/api", "");
+				const fullProfilePictureUrl = data.profile_picture_url
+					? `${apiBaseUrl}${data.profile_picture_url}`
+					: data.profile_picture_url;
+
+				setProfileImageUrl(fullProfilePictureUrl);
 				// Refresh the user context if needed
 				if (refreshProfile) {
 					await refreshProfile();
 				}
-				alert("Profile picture updated successfully!");
+				toast.success("Profile picture updated successfully!");
 			} else {
 				setPictureUploadError(data.message || "Upload failed");
 				// Revert to original image
@@ -203,7 +203,7 @@ const User = () => {
 				if (refreshProfile) {
 					await refreshProfile();
 				}
-				alert("Profile picture removed successfully!");
+				toast.success("Profile picture removed successfully!");
 			} else {
 				setPictureUploadError(data.message || "Delete failed");
 			}
@@ -240,7 +240,9 @@ const User = () => {
 		if (showEditTrigger) {
 			setProfileDetails(editableProfileDetails);
 			setCurrentEmail(editableEmail);
-			alert("Profile details updated locally. Implement API call for saving.");
+			toast.success(
+				"Profile details updated locally. Implement API call for saving."
+			);
 		}
 		setShowEditTrigger(!showEditTrigger);
 	};
@@ -270,7 +272,7 @@ const User = () => {
 	const handleSaveAddressClick = () => {
 		setAddress(tempAddress);
 		setIsAddressEditing(false);
-		alert("Address updated locally. Implement API call.");
+		toast.success("Address updated locally. Implement API call.");
 	};
 
 	const handlePasswordInputChange = (e, field) => {
@@ -292,11 +294,11 @@ const User = () => {
 
 	const handleSavePassword = () => {
 		if (!currentPassword || !newPassword || !confirmNewPassword) {
-			alert("Please fill in all password fields.");
+			toast.warning("Please fill in all password fields.");
 			return;
 		}
 		if (newPassword !== confirmNewPassword) {
-			alert("New password and confirm password do not match.");
+			toast.error("New password and confirm password do not match.");
 			return;
 		}
 		console.log(
@@ -308,7 +310,7 @@ const User = () => {
 		setCurrentPassword("");
 		setNewPassword("");
 		setConfirmNewPassword("");
-		alert("Password change initiated (implement backend logic).");
+		toast.warning("Password change initiated (implement backend logic).");
 	};
 
 	const handleOpenLogoutModal = () => {
@@ -335,9 +337,9 @@ const User = () => {
 	const handleRefreshProfile = async () => {
 		try {
 			await refreshProfile();
-			alert("Profile refreshed successfully!");
+			toast.success("Profile refreshed successfully!");
 		} catch (error) {
-			alert("Failed to refresh profile. Please try again.");
+			toast.error("Failed to refresh profile. Please try again.");
 			console.error("Refresh failed:", error);
 		}
 	};
@@ -347,7 +349,17 @@ const User = () => {
 			{/* Top Section */}
 			<div className={`profile-header ${showEditTrigger ? "editing" : ""}`}>
 				<div className="profile-image-wrapper">
-					<img src={profileImageUrl} alt="User" className="profile-icon" />
+					<img
+						src={profileImageUrl}
+						alt="User"
+						className="profile-icon"
+						onLoad={() => setIsImageLoading(false)}
+						onError={() => {
+							setIsImageLoading(false);
+							setProfileImageUrl(assets.user || assets.personal);
+						}}
+						style={{ opacity: isImageLoading ? 0.5 : 1 }}
+					/>
 
 					{/* Loading overlay for profile picture */}
 					{isUploadingPicture && (

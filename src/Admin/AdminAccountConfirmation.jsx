@@ -6,6 +6,7 @@ import {
 } from "../LoginSignup/action";
 import "./Dashboard.css";
 import "./DashStyle/Dashboard.css";
+import { toast } from "react-toastify";
 
 const AdminAccountConfirmation = () => {
 	const [pendingVendors, setPendingVendors] = useState([]);
@@ -34,10 +35,10 @@ const AdminAccountConfirmation = () => {
 	const handleApproveVendor = async (userId) => {
 		try {
 			await approveVendor(userId);
-			alert("Vendor approved successfully!");
+			toast.success("Vendor approved successfully!");
 			loadPendingVendors(); // Refresh the list
 		} catch (error) {
-			alert("Failed to approve vendor: " + error.message);
+			toast.error("Failed to approve vendor: " + error.message);
 		}
 	};
 
@@ -49,10 +50,10 @@ const AdminAccountConfirmation = () => {
 		) {
 			try {
 				await rejectVendor(userId);
-				alert("Vendor rejected successfully!");
+				toast.success("Vendor rejected successfully!");
 				loadPendingVendors(); // Refresh the list
 			} catch (error) {
-				alert("Failed to reject vendor: " + error.message);
+				toast.error("Failed to reject vendor: " + error.message);
 			}
 		}
 	};
