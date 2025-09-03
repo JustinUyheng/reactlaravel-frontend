@@ -177,7 +177,8 @@ const TransactionHistory = () => {
 				</div>
 				<div className="summary-card">
 					<h3>Total Revenue</h3>
-					<p>₱{summary.totalRevenue.toFixed(2)}</p>
+					{/* <p>₱{summary.totalRevenue.toFixed(2)}</p> */}
+					<p>₱{summary.totalRevenue}</p>
 				</div>
 				<div className="summary-card">
 					<h3>Orders</h3>

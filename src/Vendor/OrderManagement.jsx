@@ -139,7 +139,8 @@ const OrderManagement = () => {
 						</div>
 						<div className="stat-card">
 							<h3>Total Revenue</h3>
-							<p>₱{(statistics?.total_revenue || 0).toFixed(2)}</p>
+							{/* <p>₱{(statistics?.total_revenue || 0).toFixed(2)}</p> */}
+							<p>₱{statistics?.total_revenue || 0}</p>
 						</div>
 					</div>
 
@@ -257,10 +258,10 @@ const OrderManagement = () => {
 														x{item.quantity}
 													</span>
 													<span className="item-price">
-														₱
-														{(
+														₱ {item.price * item.quantity}
+														{/* {(
 															parseFloat(item.price) * parseInt(item.quantity)
-														).toFixed(2)}
+														).toFixed(2)} */}
 													</span>
 												</div>
 											))}
@@ -268,15 +269,18 @@ const OrderManagement = () => {
 										<div className="order-total">
 											<p>
 												<strong>Subtotal:</strong> ₱
-												{parseFloat(order.subtotal).toFixed(2)}
+												{/* {parseFloat(order.subtotal).toFixed(2)} */}
+												{order.subtotal}
 											</p>
 											<p>
 												<strong>Service Fee:</strong> ₱
-												{parseFloat(order.service_fee || 0).toFixed(2)}
+												{/* {parseFloat(order.service_fee || 0).toFixed(2)} */}
+												{order.service_fee || 0}
 											</p>
 											<p>
 												<strong>Total:</strong> ₱
-												{calculateOrderTotal(order).toFixed(2)}
+												{/* {calculateOrderTotal(order).toFixed(2)} */}
+												{calculateOrderTotal(order)}
 											</p>
 										</div>
 									</div>
@@ -319,7 +323,8 @@ const OrderManagement = () => {
 							<div className="stat-item">
 								<h3>Total Revenue</h3>
 								<p className="stat-number">
-									₱{(statistics?.total_revenue || 0).toFixed(2)}
+									{/* ₱{(statistics?.total_revenue || 0).toFixed(2)} */}₱
+									{statistics?.total_revenue || 0}
 								</p>
 							</div>
 							<div className="stat-item">
