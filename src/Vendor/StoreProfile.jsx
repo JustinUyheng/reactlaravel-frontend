@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { API_CONFIG, getAuthHeaders, handleApiResponse } from "../config/api";
+import {
+	API_CONFIG,
+	getAuthHeaders,
+	getJsonHeaders,
+	handleApiResponse,
+} from "../config/api";
 import { toast } from "react-toastify";
 import "./VendorStyle/StoreProfile.css";
 import VendorNavigation from "./components/VendorNavigation";
@@ -26,12 +31,14 @@ const StoreProfile = () => {
 	});
 
 	const businessTypes = [
-		"Restaurant",
-		"Cafeteria",
-		"Food Stall",
-		"Catering Service",
-		"Bakery",
-		"Other",
+		// "Restaurant",
+		// "Cafeteria",
+		// "Food Stall",
+		// "Catering Service",
+		// "Bakery",
+		// "Other",
+		"Food",
+		"Food/Retail",
 	];
 
 	useEffect(() => {
@@ -98,10 +105,7 @@ const StoreProfile = () => {
 
 			const response = await fetch(`${API_CONFIG.BASE_URL}/store`, {
 				method: "PUT",
-				headers: {
-					...getAuthHeaders(),
-					"Content-Type": undefined, // Remove for FormData
-				},
+				headers: getJsonHeaders(),
 				body: formDataToSend,
 			});
 

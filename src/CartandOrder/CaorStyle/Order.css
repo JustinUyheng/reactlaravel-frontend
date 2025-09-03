@@ -1,93 +1,93 @@
 /* Order.css */
 .order-wrapper {
-  padding: 40px;
-  font-family: Arial, sans-serif;
+	padding: 40px;
+	font-family: Arial, sans-serif;
 }
 
 .order-wrapper h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
+	font-size: 20px;
+	margin-bottom: 20px;
 }
 
 .order-box {
-  display: flex;
-  align-items: center; /* Vertically align items */
-  border: 1px solid #ccc;
-  padding: 15px;
-  gap: 15px; /* Consistent gap between all direct children */
-  margin-bottom: 20px;
+	display: flex;
+	align-items: center; /* Vertically align items */
+	border: 1px solid #ccc;
+	padding: 15px;
+	gap: 15px; /* Consistent gap between all direct children */
+	margin-bottom: 20px;
 }
 
 .order-icon img {
-  width: 50px;
-  height: 50px;
-  display: block;
+	width: 50px;
+	height: 50px;
+	display: block;
 }
 
 .order-icon .placeholder-icon {
-  width: 50px;
-  height: 50px;
-  background-color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed #ccc;
-  font-size: 24px; /* For the unicode character */
-  color: #777;
+	width: 50px;
+	height: 50px;
+	background-color: #f0f0f0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px dashed #ccc;
+	font-size: 24px; /* For the unicode character */
+	color: #777;
 }
 
 .order-details {
-  flex-grow: 1; /* Allows this section to take up available space */
-  font-size: 16px;
+	flex-grow: 1; /* Allows this section to take up available space */
+	font-size: 16px;
 }
 
 .order-details p {
-  margin: 0 0 5px 0;
-  font-weight: bold;
+	margin: 0 0 5px 0;
+	font-weight: bold;
 }
 .order-details small {
-  font-size: 0.85em;
-  color: #555;
+	font-size: 0.85em;
+	color: #555;
 }
 
 .order-price,
 .order-count,
 .order-status {
-  font-size: 16px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding: 0 5px;
+	font-size: 16px;
+	white-space: nowrap;
+	flex-shrink: 0;
+	padding: 0 5px;
 }
 
 .order-status span {
-  color: red;
-  font-weight: bold;
+	color: red;
+	font-weight: bold;
 }
 
 /* Styles for the delete button and its container */
 .order-actions {
-  flex-shrink: 0; /* Prevent this container from shrinking */
-  margin-left: 10px; /* Adds a little space if flex-grow on details pushes it far */
+	flex-shrink: 0; /* Prevent this container from shrinking */
+	margin-left: 10px; /* Adds a little space if flex-grow on details pushes it far */
 }
 
 .delete-order-btn {
-  background-color: #f5a300; /* Red color for delete */
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
-  line-height: 1;
-  transition: background-color 0.2s ease;
+	background-color: #f5a300; /* Red color for delete */
+	color: white;
+	border: none;
+	padding: 8px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1;
+	transition: background-color 0.2s ease;
 }
 
 .delete-order-btn:hover {
-  background-color: #f5a300; /* Darker red on hover */
+	background-color: #f5a300; /* Darker red on hover */
 }
 
 .delete-order-btn:focus {
-  outline: 2px solid #3498db; /* Accessibility: focus ring */
-  outline-offset: 2px;
+	outline: 2px solid #3498db; /* Accessibility: focus ring */
+	outline-offset: 2px;
 }

@@ -29,7 +29,7 @@ import { ToastContainer } from "react-toastify";
 import Checkout from "./CartandOrder/Checkout";
 import PayCash from "./CartandOrder/PayCash";
 import PlaceOrder from "./CartandOrder/PlaceOrder";
-import Order from "./CartandOrder/Orders";
+import Orders from "./CartandOrder/Orders";
 import VendorStores from "./Vendor/VendorStores";
 import VenCategory1 from "./Vendor/VenCategory1";
 import AddItems from "./Records/AddItems";
@@ -70,6 +70,7 @@ import OrderManagement from "./Vendor/OrderManagement";
 import TransactionHistory from "./Vendor/TransactionHistory";
 
 import StoreProducts from "./StoreContents/StoreProducts";
+import UserOrders from "./StoreContents/UserOrders";
 
 // Component to handle navbar rendering logic
 const NavbarRenderer = () => {
@@ -295,7 +296,7 @@ const AppContent = () => {
 						path="/orders"
 						element={
 							<ProtectedRoute>
-								<Order />
+								<Orders />
 							</ProtectedRoute>
 						}
 					/>
@@ -486,6 +487,15 @@ const AppContent = () => {
 						element={
 							<ProtectedRoute>
 								<StoreProducts />
+							</ProtectedRoute>
+						}
+					/>
+					{/* Dynamic order routes */}
+					<Route
+						path="/orders/user"
+						element={
+							<ProtectedRoute>
+								<UserOrders />
 							</ProtectedRoute>
 						}
 					/>
